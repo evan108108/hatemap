@@ -48,5 +48,5 @@ Ext.define('app.view.HateMap', {
 	    setTimeout(function() {
             map.getMap().panTo(position);
         }, 1000);
-	}
+	},
 });
