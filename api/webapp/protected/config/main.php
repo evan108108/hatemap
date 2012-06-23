@@ -5,9 +5,9 @@
 
 // This is the main Web application configuration. Any writable
 // CWebApplication properties can be configured here.
-return array(
+$config = array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-	'name'=>'Yii Bootstrap',
+	'name'=>'hatemap',
 
 	// preloading 'log' component
 	'preload'=>array('log', 'bootstrap'),
@@ -25,6 +25,7 @@ return array(
     'ext.wunit.*',
     'ext.file.*',
     'ext.CacheYii.*',
+    'ext.restfullyii.components.*',
 	),
 
 	'modules'=>array(
@@ -106,3 +107,17 @@ return array(
 	// using Yii::app()->params['paramName']
 	'params'=>require(dirname(__FILE__).'/params.php'),
 );
+
+/**
+ * Hack.
+ * If we are in /app/ remove bootsrapt from config.
+ * We want to get rid of bootstrap on ajax calls, CLI and from app domain.
+ *  
+ */
+if(disable_bootstrap() /*|| is_ajax( )*/ )
+{
+	$config['preload'] = array_diff($config['preload'], array('bootstrap'));	
+}
+
+
+return $config;
