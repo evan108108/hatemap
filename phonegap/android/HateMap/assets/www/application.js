@@ -8,7 +8,6 @@ function onDeviceReady() {
 }
 
 function getPhoto(source) {
-    // Retrieve image file location from specified source
     navigator.camera.getPicture(uploadPhoto, photoFailed, { quality: 50, destinationType: destinationType.FILE_URI, sourceType: source });
 }
 
@@ -25,7 +24,7 @@ function uploadPhoto(imageURI){
 }
 
 function getGeolocation() {
-	navigator.geolocation.getCurrentPosition(geolocationSuccess, geolocationError, { maximumAge: 9000, timeout: 5000, enableHighAccuracy: true });
+	navigator.geolocation.getCurrentPosition(geolocationSuccess, geolocationError, { maximumAge: 25000, timeout: 25000, enableHighAccuracy: true });
 }
 
 function geolocationSuccess(position) {
