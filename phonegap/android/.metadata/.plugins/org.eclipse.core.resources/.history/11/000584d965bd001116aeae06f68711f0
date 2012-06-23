@@ -1,0 +1,11 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Cordova</title>
+		<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+		<script type="text/javascript" src="application.js"></script>
+	</head>
+	<body onload="init()">
+		<h1>Hello World</h1>
+	</body>
+</html>
