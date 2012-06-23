@@ -16,6 +16,16 @@ defined('DS') or define('DS',DIRECTORY_SEPARATOR);
 defined('SYSTEM_USER_ID') or define('SYSTEM_USER_ID', 1);
 
 
+function mergeArrays($array1, $array2, $stripIndexes=array())
+{
+  $merged = CMap::mergeArray($array1, $array2);
+  foreach($stripIndexes as $index)
+  {
+    unset($merged[($index)]);
+  }
+  return $merged;
+}
+
 /**
  * This is the shortcut to CHtml::encode
  */
@@ -76,6 +86,11 @@ function ph($text)
 	if($purifier===null)
 		$purifier=new CHtmlPurifier;
 	return $purifier->purify($text);
+}
+
+function camelCase($str)
+{
+  return str_replace(' ', '', lcfirst(ucwords(str_replace('_', ' ', $str)))); 
 }
 
 /**
@@ -467,7 +482,15 @@ function array_to_csv($array, $header_row = true, $col_sep = ",", $row_sep = "\n
 	return $output;
 }
 
-
+function checkAllAccess($authItems=array())
+{
+  for($i=0; $i<count($authItems); $i++)
+  {
+    if(!Yii::app()->user->checkAccess($authItems[$i]))
+      return false;
+  }
+  return true;
+}
 
 function generateSalt($saltLength = 9)
 {
@@ -548,5 +571,20 @@ class arrayClass
     }
 }
 
-?>
+/**
+ * Hack;
+ * http://dzdb.local/app/DZ-LLC#inventory => TRUE.
+ */
+function disable_bootstrap() {
+	//This might be that we are on the CLI?
+	if (php_sapi_name() === 'cli' || !isset($_SERVER['REQUEST_URI']) ) 
+		return FALSE;
+	//if(!isset($_SERVER['REQUEST_URI'])) return FALSE;
+	
+	return strpos($_SERVER["REQUEST_URI"], '/api/') === 0; 	
+}
 
+function is_ajax( ) {
+    return (isset($_SERVER['HTTP_X_REQUESTED_WITH']) &&
+    (strtolower(  $_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest'));
+}
