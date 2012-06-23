@@ -1,0 +1,4 @@
+INDEX VERSION 1.126+/Users/Daniel/Documents/workspace/hatemap/phonegap/android/.metadata/.plugins/org.eclipse.jdt.core
+2771598341.index
+526897086.index
+3385566166.index
