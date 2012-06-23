@@ -49,7 +49,7 @@ class HateController extends ERestController
     $model=new Hate;
     if(isset($_POST['image']))
     {
-      $model->attributes=$_POST['Hate'];
+      $model->image = $_POST['image'];
       $model->image=CUploadedFile::getInstance($model,'image');
       $filename = $this->uid . "_" . md5(time().rand()) . $uploaded_image->getExtensionName();
       $model->image->saveAs(str_replace('/protected', '', Yii::app()->getBasePath()) . '/images/hates/' . $filename);
