@@ -1,0 +1,4 @@
+hatemap
+=======
+
+Map of Hate!
