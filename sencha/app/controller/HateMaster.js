@@ -2,7 +2,8 @@ Ext.define('app.controller.HateMaster', {
     extend: 'Ext.app.Controller',
 	config: {
 		refs: {
-			contacts: 'contactDetails'
+			contacts: 'contactDetails',
+			hateButton:'button[id=hate-button]'
 		},
 		xtype: 'hateMaster'
 	},
@@ -23,11 +24,13 @@ Ext.define('app.controller.HateMaster', {
 					var rec = Ext.getStore('Hates').getAt(idx);
 					me.showHateDetail(rec);
 				}
+			},
+			'button[id=hate-button]':{
+				tap:'onHateAction'
 			}
 		});
 
 	},
-	
 	showHates: function() {
 		var contacts = Ext.create('app.view.HateMap');
 		// this.app.vp.add(contacts);
@@ -41,5 +44,8 @@ Ext.define('app.controller.HateMaster', {
 		this.app.vp.add(details);
 		this.app.vp.setActiveItem(details);
 		console.log(rec);
+	},
+	onHateAction:function(){
+		
 	}
 });
