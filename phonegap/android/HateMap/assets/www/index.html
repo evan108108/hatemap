@@ -1,0 +1,18 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>HateMap</title>
+		<script type="text/javascript" src="jquery.js"></script>
+		<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+		<script type="text/javascript" src="application.js"></script>
+	</head>
+	<body onload="init()">
+		<h1>HATE HATE HATE</h1>
+		
+		<button onclick="capturePhoto();">Capture Photo</button>
+		<button onclick="getPhoto(pictureSource.PHOTOLIBRARY);">From Photo Library</button>
+		<button onclick="getGeolocation();">Get Geolocation</button>
+
+		<img id="photo_thumbnail" src="" style="width:auto;height:120px;"></img>
+	</body>
+</html>
