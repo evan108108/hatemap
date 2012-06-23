@@ -1,0 +1,112 @@
+[
+    {
+        "name": "cg/LintYiiUnit",
+        "version": "master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/evan108108/LintYiiUnit",
+            "reference": "origin/master"
+        },
+        "type": "library",
+        "installation-source": "source"
+    },
+    {
+        "name": "weavora/wunit",
+        "version": "master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/weavora/wunit.git",
+            "reference": "origin/master"
+        },
+        "type": "library",
+        "installation-source": "source"
+    },
+    {
+        "name": "idlesign/file",
+        "version": "master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "http://github.com/idlesign/ist-yii-cfile",
+            "reference": "origin/master"
+        },
+        "type": "library",
+        "installation-source": "source"
+    },
+    {
+        "name": "generator4fixtures/gii",
+        "version": "master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "hg",
+            "url": "https://bitbucket.org/denis_medved/my-yii-extension",
+            "reference": "tip"
+        },
+        "type": "library",
+        "installation-source": "source"
+    },
+    {
+        "name": "crisu83/bootstrap",
+        "version": "master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "hg",
+            "url": "https://bitbucket.org/Crisu83/yii-bootstrap",
+            "reference": "tip"
+        },
+        "type": "library",
+        "installation-source": "source"
+    },
+    {
+        "name": "cg/RESTFullYii",
+        "version": "dev-cg",
+        "version_normalized": "dev-cg",
+        "time": "2012-04-10 19:40:49",
+        "source": {
+            "type": "git",
+            "url": "http://github.com/evan108108/RESTFullYii.git",
+            "reference": "f132554a4bf2bae9af7151c130650936b2da0e9c"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://github.com/evan108108/RESTFullYii/zipball/f132554a4bf2bae9af7151c130650936b2da0e9c",
+            "reference": "f132554a4bf2bae9af7151c130650936b2da0e9c",
+            "shasum": ""
+        },
+        "type": "library",
+        "installation-source": "source"
+    },
+    {
+        "name": "cg/unit-test-yiis",
+        "version": "dev-cg",
+        "version_normalized": "dev-cg",
+        "time": "2012-04-15 02:34:06",
+        "source": {
+            "type": "git",
+            "url": "http://github.com/evan108108/UnitTestYiis.git",
+            "reference": "db6f2acc6f500ec9437e2fa5053d4e0d12010981"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://github.com/evan108108/UnitTestYiis/zipball/db6f2acc6f500ec9437e2fa5053d4e0d12010981",
+            "reference": "db6f2acc6f500ec9437e2fa5053d4e0d12010981",
+            "shasum": ""
+        },
+        "type": "library",
+        "installation-source": "source"
+    },
+    {
+        "name": "cg/CacheYii",
+        "version": "master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/evan108108/CacheYii",
+            "reference": "origin/master"
+        },
+        "type": "library",
+        "installation-source": "source"
+    }
+]

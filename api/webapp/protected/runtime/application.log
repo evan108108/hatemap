@@ -1,0 +1,406 @@
+2012/04/11 13:37:17 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'test.profiles' doesn't exist. The SQL statement executed was: SHOW COLUMNS FROM `profiles`.
+in /Users/evan.frolich/Sites/yii/yii-base-install/webapp/protected/modules/user/controllers/RegistrationController.php (26)
+in /Users/evan.frolich/Sites/yii/yii-base-install/webapp/index.php (13)
+2012/04/11 13:37:17 [error] [exception.CDbException] exception 'CDbException' with message 'The table "profiles" for active record class "Profile" cannot be found in the database.' in /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/db/ar/CActiveRecord.php:2268
+Stack trace:
+#0 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/db/ar/CActiveRecord.php(383): CActiveRecordMetaData->__construct(Object(Profile))
+#1 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/db/ar/CActiveRecord.php(398): CActiveRecord::model('Profile')
+#2 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/db/ar/CActiveRecord.php(78): CActiveRecord->getMetaData()
+#3 /Users/evan.frolich/Sites/yii/yii-base-install/webapp/protected/modules/user/controllers/RegistrationController.php(26): CActiveRecord->__construct()
+#4 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/actions/CInlineAction.php(50): RegistrationController->actionRegistration()
+#5 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#6 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#7 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CWebApplication.php(276): CController->run('')
+#9 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('user/registrati...')
+#10 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#11 /Users/evan.frolich/Sites/yii/yii-base-install/webapp/index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/index.php/user/registration
+HTTP_REFERER=http://yii-base-install.local/
+---
+2012/04/11 13:41:09 [error] [exception.CException] exception 'CException' with message 'Alias "bootstrap.widgets.BootNavbar" is invalid. Make sure it points to an existing directory or file.' in /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/YiiBase.php:343
+Stack trace:
+#0 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CWidgetFactory.php(147): YiiBase::import('bootstrap.widge...', true)
+#1 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CBaseController.php(147): CWidgetFactory->createWidget(Object(SiteController), 'bootstrap.widge...', Array)
+#2 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CBaseController.php(173): CBaseController->createWidget('bootstrap.widge...', Array)
+#3 /Users/evan.frolich/Sites/yii/yii-base-install/webapp/protected/views/layouts/main.php(45): CBaseController->widget('bootstrap.widge...', Array)
+#4 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CBaseController.php(127): require('/Users/evan.fro...')
+#5 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CBaseController.php(96): CBaseController->renderInternal('/Users/evan.fro...', Array, true)
+#6 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/widgets/CContentDecorator.php(77): CBaseController->renderFile('/Users/evan.fro...', Array, true)
+#7 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/widgets/CContentDecorator.php(55): CContentDecorator->decorate('<div class="con...')
+#8 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/widgets/COutputProcessor.php(45): CContentDecorator->processOutput('<div class="con...')
+#9 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CBaseController.php(207): COutputProcessor->run()
+#10 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CBaseController.php(301): CBaseController->endWidget('CContentDecorat...')
+#11 /Users/evan.frolich/Sites/yii/yii-base-install/webapp/protected/views/layouts/column1.php(7): CBaseController->endContent()
+#12 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CBaseController.php(127): require('/Users/evan.fro...')
+#13 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CBaseController.php(96): CBaseController->renderInternal('/Users/evan.fro...', Array, true)
+#14 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CController.php(785): CBaseController->renderFile('/Users/evan.fro...', Array, true)
+#15 /Users/evan.frolich/Sites/yii/yii-base-install/webapp/protected/controllers/SiteController.php(32): CController->render('index')
+#16 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/actions/CInlineAction.php(50): SiteController->actionIndex()
+#17 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#18 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#19 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CWebApplication.php(276): CController->run('')
+#21 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('')
+#22 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#23 /Users/evan.frolich/Sites/yii/yii-base-install/webapp/index.php(13): CApplication->run()
+#24 {main}
+REQUEST_URI=/
+---
+2012/04/11 13:41:38 [error] [exception.CException] exception 'CException' with message 'Alias "bootstrap.widgets.BootNavbar" is invalid. Make sure it points to an existing directory or file.' in /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/YiiBase.php:343
+Stack trace:
+#0 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CWidgetFactory.php(147): YiiBase::import('bootstrap.widge...', true)
+#1 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CBaseController.php(147): CWidgetFactory->createWidget(Object(SiteController), 'bootstrap.widge...', Array)
+#2 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CBaseController.php(173): CBaseController->createWidget('bootstrap.widge...', Array)
+#3 /Users/evan.frolich/Sites/yii/yii-base-install/webapp/protected/views/layouts/main.php(45): CBaseController->widget('bootstrap.widge...', Array)
+#4 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CBaseController.php(127): require('/Users/evan.fro...')
+#5 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CBaseController.php(96): CBaseController->renderInternal('/Users/evan.fro...', Array, true)
+#6 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/widgets/CContentDecorator.php(77): CBaseController->renderFile('/Users/evan.fro...', Array, true)
+#7 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/widgets/CContentDecorator.php(55): CContentDecorator->decorate('<div class="con...')
+#8 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/widgets/COutputProcessor.php(45): CContentDecorator->processOutput('<div class="con...')
+#9 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CBaseController.php(207): COutputProcessor->run()
+#10 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CBaseController.php(301): CBaseController->endWidget('CContentDecorat...')
+#11 /Users/evan.frolich/Sites/yii/yii-base-install/webapp/protected/views/layouts/column1.php(7): CBaseController->endContent()
+#12 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CBaseController.php(127): require('/Users/evan.fro...')
+#13 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CBaseController.php(96): CBaseController->renderInternal('/Users/evan.fro...', Array, true)
+#14 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CController.php(785): CBaseController->renderFile('/Users/evan.fro...', Array, true)
+#15 /Users/evan.frolich/Sites/yii/yii-base-install/webapp/protected/controllers/SiteController.php(32): CController->render('index')
+#16 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/actions/CInlineAction.php(50): SiteController->actionIndex()
+#17 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#18 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#19 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CWebApplication.php(276): CController->run('')
+#21 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('')
+#22 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#23 /Users/evan.frolich/Sites/yii/yii-base-install/webapp/index.php(13): CApplication->run()
+#24 {main}
+REQUEST_URI=/
+---
+2012/04/11 13:41:44 [error] [exception.CException] exception 'CException' with message 'Alias "bootstrap.widgets.BootNavbar" is invalid. Make sure it points to an existing directory or file.' in /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/YiiBase.php:343
+Stack trace:
+#0 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CWidgetFactory.php(147): YiiBase::import('bootstrap.widge...', true)
+#1 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CBaseController.php(147): CWidgetFactory->createWidget(Object(SiteController), 'bootstrap.widge...', Array)
+#2 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CBaseController.php(173): CBaseController->createWidget('bootstrap.widge...', Array)
+#3 /Users/evan.frolich/Sites/yii/yii-base-install/webapp/protected/views/layouts/main.php(45): CBaseController->widget('bootstrap.widge...', Array)
+#4 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CBaseController.php(127): require('/Users/evan.fro...')
+#5 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CBaseController.php(96): CBaseController->renderInternal('/Users/evan.fro...', Array, true)
+#6 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/widgets/CContentDecorator.php(77): CBaseController->renderFile('/Users/evan.fro...', Array, true)
+#7 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/widgets/CContentDecorator.php(55): CContentDecorator->decorate('<div class="con...')
+#8 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/widgets/COutputProcessor.php(45): CContentDecorator->processOutput('<div class="con...')
+#9 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CBaseController.php(207): COutputProcessor->run()
+#10 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CBaseController.php(301): CBaseController->endWidget('CContentDecorat...')
+#11 /Users/evan.frolich/Sites/yii/yii-base-install/webapp/protected/views/layouts/column1.php(7): CBaseController->endContent()
+#12 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CBaseController.php(127): require('/Users/evan.fro...')
+#13 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CBaseController.php(96): CBaseController->renderInternal('/Users/evan.fro...', Array, true)
+#14 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CController.php(785): CBaseController->renderFile('/Users/evan.fro...', Array, true)
+#15 /Users/evan.frolich/Sites/yii/yii-base-install/webapp/protected/controllers/SiteController.php(32): CController->render('index')
+#16 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/actions/CInlineAction.php(50): SiteController->actionIndex()
+#17 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#18 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#19 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CWebApplication.php(276): CController->run('')
+#21 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('')
+#22 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#23 /Users/evan.frolich/Sites/yii/yii-base-install/webapp/index.php(13): CApplication->run()
+#24 {main}
+REQUEST_URI=/
+---
+2012/04/11 13:42:03 [error] [exception.CException] exception 'CException' with message 'Alias "bootstrap.widgets.BootNavbar" is invalid. Make sure it points to an existing directory or file.' in /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/YiiBase.php:343
+Stack trace:
+#0 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CWidgetFactory.php(147): YiiBase::import('bootstrap.widge...', true)
+#1 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CBaseController.php(147): CWidgetFactory->createWidget(Object(SiteController), 'bootstrap.widge...', Array)
+#2 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CBaseController.php(173): CBaseController->createWidget('bootstrap.widge...', Array)
+#3 /Users/evan.frolich/Sites/yii/yii-base-install/webapp/protected/views/layouts/main.php(45): CBaseController->widget('bootstrap.widge...', Array)
+#4 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CBaseController.php(127): require('/Users/evan.fro...')
+#5 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CBaseController.php(96): CBaseController->renderInternal('/Users/evan.fro...', Array, true)
+#6 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/widgets/CContentDecorator.php(77): CBaseController->renderFile('/Users/evan.fro...', Array, true)
+#7 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/widgets/CContentDecorator.php(55): CContentDecorator->decorate('<div class="con...')
+#8 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/widgets/COutputProcessor.php(45): CContentDecorator->processOutput('<div class="con...')
+#9 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CBaseController.php(207): COutputProcessor->run()
+#10 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CBaseController.php(301): CBaseController->endWidget('CContentDecorat...')
+#11 /Users/evan.frolich/Sites/yii/yii-base-install/webapp/protected/views/layouts/column1.php(7): CBaseController->endContent()
+#12 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CBaseController.php(127): require('/Users/evan.fro...')
+#13 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CBaseController.php(96): CBaseController->renderInternal('/Users/evan.fro...', Array, true)
+#14 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CController.php(785): CBaseController->renderFile('/Users/evan.fro...', Array, true)
+#15 /Users/evan.frolich/Sites/yii/yii-base-install/webapp/protected/controllers/SiteController.php(32): CController->render('index')
+#16 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/actions/CInlineAction.php(50): SiteController->actionIndex()
+#17 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#18 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#19 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CWebApplication.php(276): CController->run('')
+#21 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('')
+#22 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#23 /Users/evan.frolich/Sites/yii/yii-base-install/webapp/index.php(13): CApplication->run()
+#24 {main}
+REQUEST_URI=/
+---
+2012/04/11 13:42:06 [error] [exception.CException] exception 'CException' with message 'Alias "bootstrap.widgets.BootNavbar" is invalid. Make sure it points to an existing directory or file.' in /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/YiiBase.php:343
+Stack trace:
+#0 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CWidgetFactory.php(147): YiiBase::import('bootstrap.widge...', true)
+#1 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CBaseController.php(147): CWidgetFactory->createWidget(Object(SiteController), 'bootstrap.widge...', Array)
+#2 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CBaseController.php(173): CBaseController->createWidget('bootstrap.widge...', Array)
+#3 /Users/evan.frolich/Sites/yii/yii-base-install/webapp/protected/views/layouts/main.php(45): CBaseController->widget('bootstrap.widge...', Array)
+#4 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CBaseController.php(127): require('/Users/evan.fro...')
+#5 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CBaseController.php(96): CBaseController->renderInternal('/Users/evan.fro...', Array, true)
+#6 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/widgets/CContentDecorator.php(77): CBaseController->renderFile('/Users/evan.fro...', Array, true)
+#7 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/widgets/CContentDecorator.php(55): CContentDecorator->decorate('<div class="con...')
+#8 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/widgets/COutputProcessor.php(45): CContentDecorator->processOutput('<div class="con...')
+#9 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CBaseController.php(207): COutputProcessor->run()
+#10 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CBaseController.php(301): CBaseController->endWidget('CContentDecorat...')
+#11 /Users/evan.frolich/Sites/yii/yii-base-install/webapp/protected/views/layouts/column1.php(7): CBaseController->endContent()
+#12 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CBaseController.php(127): require('/Users/evan.fro...')
+#13 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CBaseController.php(96): CBaseController->renderInternal('/Users/evan.fro...', Array, true)
+#14 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CController.php(785): CBaseController->renderFile('/Users/evan.fro...', Array, true)
+#15 /Users/evan.frolich/Sites/yii/yii-base-install/webapp/protected/controllers/SiteController.php(32): CController->render('index')
+#16 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/actions/CInlineAction.php(50): SiteController->actionIndex()
+#17 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#18 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#19 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CWebApplication.php(276): CController->run('')
+#21 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('')
+#22 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#23 /Users/evan.frolich/Sites/yii/yii-base-install/webapp/index.php(13): CApplication->run()
+#24 {main}
+REQUEST_URI=/
+---
+2012/04/11 13:42:55 [error] [exception.CException] exception 'CException' with message 'CAssetManager.basePath "/Users/evan.frolich/Sites/yii/yii-base-install/webapp/assets" is invalid. Please make sure the directory exists and is writable by the Web server process.' in /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CAssetManager.php:116
+Stack trace:
+#0 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CAssetManager.php(101): CAssetManager->setBasePath('/Users/evan.fro...')
+#1 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CAssetManager.php(219): CAssetManager->getBasePath()
+#2 /Users/evan.frolich/Developer/yiic/Yii-with-Users-and-Rights/webapp/protected/vendors/crisu83/bootstrap/components/Bootstrap.php(371): CAssetManager->publish('/Users/evan.fro...', false, -1, true)
+#3 /Users/evan.frolich/Developer/yiic/Yii-with-Users-and-Rights/webapp/protected/vendors/crisu83/bootstrap/components/Bootstrap.php(85): Bootstrap->getAssetsUrl()
+#4 /Users/evan.frolich/Developer/yiic/Yii-with-Users-and-Rights/webapp/protected/vendors/crisu83/bootstrap/components/Bootstrap.php(69): Bootstrap->registerCss()
+#5 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/base/CModule.php(388): Bootstrap->init()
+#6 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/base/CModule.php(493): CModule->getComponent('bootstrap')
+#7 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/base/CApplication.php(146): CModule->preloadComponents()
+#8 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/YiiBase.php(127): CApplication->__construct('/Users/evan.fro...')
+#9 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/YiiBase.php(100): YiiBase::createApplication('CWebApplication', '/Users/evan.fro...')
+#10 /Users/evan.frolich/Sites/yii/yii-base-install/webapp/index.php(13): YiiBase::createWebApplication('/Users/evan.fro...')
+#11 {main}
+REQUEST_URI=/
+---
+2012/04/11 16:38:18 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'yii_base.users' doesn't exist. The SQL statement executed was: SHOW COLUMNS FROM `users`.
+in /Users/evan.frolich/Sites/yii/yii-base-install/webapp/protected/modules/user/controllers/RegistrationController.php (25)
+in /Users/evan.frolich/Sites/yii/yii-base-install/webapp/index.php (13)
+2012/04/11 16:38:18 [error] [exception.CDbException] exception 'CDbException' with message 'The table "users" for active record class "RegistrationForm" cannot be found in the database.' in /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/db/ar/CActiveRecord.php:2268
+Stack trace:
+#0 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/db/ar/CActiveRecord.php(383): CActiveRecordMetaData->__construct(Object(RegistrationForm))
+#1 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/db/ar/CActiveRecord.php(398): CActiveRecord::model('RegistrationFor...')
+#2 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/db/ar/CActiveRecord.php(78): CActiveRecord->getMetaData()
+#3 /Users/evan.frolich/Sites/yii/yii-base-install/webapp/protected/modules/user/controllers/RegistrationController.php(25): CActiveRecord->__construct()
+#4 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/actions/CInlineAction.php(50): RegistrationController->actionRegistration()
+#5 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#6 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#7 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CWebApplication.php(276): CController->run('')
+#9 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('user/registrati...')
+#10 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#11 /Users/evan.frolich/Sites/yii/yii-base-install/webapp/index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/index.php/user/registration
+HTTP_REFERER=http://yii-base-install.local/user/login
+---
+2012/04/11 19:52:42 [error] [exception.CException] exception 'CException' with message 'Property "ProfileField.name" is not defined.' in /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/base/CComponent.php:131
+Stack trace:
+#0 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/db/ar/CActiveRecord.php(144): CComponent->__get('name')
+#1 /Users/evan.frolich/Sites/yii/yii-base-install/webapp/protected/modules/user/views/profile/profile.php(29): CActiveRecord->__get('name')
+#2 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CBaseController.php(127): require('/Users/evan.fro...')
+#3 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CBaseController.php(96): CBaseController->renderInternal('/Users/evan.fro...', Array, true)
+#4 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CController.php(870): CBaseController->renderFile('/Users/evan.fro...', Array, true)
+#5 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CController.php(783): CController->renderPartial('profile', Array, true)
+#6 /Users/evan.frolich/Sites/yii/yii-base-install/webapp/protected/modules/user/controllers/ProfileController.php(21): CController->render('profile', Array)
+#7 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/actions/CInlineAction.php(50): ProfileController->actionProfile()
+#8 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#9 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#10 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CWebApplication.php(276): CController->run('')
+#12 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('user/profile')
+#13 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#14 /Users/evan.frolich/Sites/yii/yii-base-install/webapp/index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/index.php/user/profile
+---
+2012/04/11 20:33:20 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "user/create".' in /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CWebApplication.php:280
+Stack trace:
+#0 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('user/create')
+#1 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#2 /Users/evan.frolich/Sites/yii/yii-base-install/webapp/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/index.php/user/create
+---
+2012/04/11 20:56:09 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "user/create".' in /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CWebApplication.php:280
+Stack trace:
+#0 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('user/create')
+#1 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#2 /Users/evan.frolich/Sites/yii/yii-base-install/webapp/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/index.php/user/create
+---
+2012/04/11 20:58:06 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "Profile".' in /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CController.php:484
+Stack trace:
+#0 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CController.php(271): CController->missingAction('Profile')
+#1 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CWebApplication.php(276): CController->run('Profile')
+#2 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('user/admin/Prof...')
+#3 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#4 /Users/evan.frolich/Sites/yii/yii-base-install/webapp/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/user/admin/Profile
+HTTP_REFERER=http://yii-base-install.local/user/admin/create
+---
+2012/04/11 20:58:12 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "profile".' in /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CController.php:484
+Stack trace:
+#0 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CController.php(271): CController->missingAction('profile')
+#1 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CWebApplication.php(276): CController->run('profile')
+#2 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('user/admin/prof...')
+#3 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#4 /Users/evan.frolich/Sites/yii/yii-base-install/webapp/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/user/admin/profile
+---
+2012/04/11 21:19:38 [error] [php] Undefined offset: 0 (/Users/evan.frolich/Developer/yiic/Yii-with-Users-and-Rights/webapp/protected/vendors/crisu83/bootstrap/widgets/BootBaseMenu.php:75)
+Stack trace:
+#0 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CBaseController.php(148): BootMenu->init()
+#1 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CBaseController.php(173): AdminController->createWidget()
+#2 /Users/evan.frolich/Sites/yii/yii-base-install/webapp/protected/modules/user/views/admin/_menu.php(24): AdminController->widget()
+#3 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CBaseController.php(127): require()
+#4 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CBaseController.php(96): AdminController->renderInternal()
+#5 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CController.php(870): AdminController->renderFile()
+#6 /Users/evan.frolich/Sites/yii/yii-base-install/webapp/protected/modules/user/views/admin/view.php(18): AdminController->renderPartial()
+#7 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CBaseController.php(127): require()
+#8 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CBaseController.php(96): AdminController->renderInternal()
+#9 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CController.php(870): AdminController->renderFile()
+#10 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CController.php(783): AdminController->renderPartial()
+#11 /Users/evan.frolich/Sites/yii/yii-base-install/webapp/protected/modules/user/controllers/AdminController.php(60): AdminController->render()
+#12 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/actions/CInlineAction.php(50): AdminController->actionView()
+#13 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CController.php(309): CInlineAction->runWithParams()
+#14 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/filters/CFilterChain.php(134): AdminController->runAction()
+#15 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/filters/CFilter.php(41): CFilterChain->run()
+#16 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CController.php(1146): CAccessControlFilter->filter()
+#17 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/filters/CInlineFilter.php(59): AdminController->filterAccessControl()
+#18 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter()
+#19 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CController.php(292): CFilterChain->run()
+#20 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CController.php(266): AdminController->runActionWithFilters()
+#21 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CWebApplication.php(276): AdminController->run()
+#22 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CWebApplication.php(135): CWebApplication->runController()
+#23 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#24 /Users/evan.frolich/Sites/yii/yii-base-install/webapp/index.php(13): CWebApplication->run()
+REQUEST_URI=/index.php/user/admin/view/id/1
+in /Users/evan.frolich/Developer/yiic/Yii-with-Users-and-Rights/webapp/protected/vendors/crisu83/bootstrap/widgets/BootBaseMenu.php (75)
+in /Users/evan.frolich/Developer/yiic/Yii-with-Users-and-Rights/webapp/protected/vendors/crisu83/bootstrap/widgets/BootMenu.php (199)
+in /Users/evan.frolich/Developer/yiic/Yii-with-Users-and-Rights/webapp/protected/vendors/crisu83/bootstrap/widgets/BootMenu.php (49)
+2012/04/11 22:21:14 [error] [php] Undefined variable: value (/Users/evan.frolich/Sites/yii/yii-base-install/webapp/protected/modules/user/views/admin/view.php:61)
+Stack trace:
+#0 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CController.php(870): AdminController->renderFile()
+#1 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CController.php(783): AdminController->renderPartial()
+#2 /Users/evan.frolich/Sites/yii/yii-base-install/webapp/protected/modules/user/controllers/AdminController.php(60): AdminController->render()
+#3 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/actions/CInlineAction.php(50): AdminController->actionView()
+#4 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CController.php(309): CInlineAction->runWithParams()
+#5 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/filters/CFilterChain.php(134): AdminController->runAction()
+#6 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/filters/CFilter.php(41): CFilterChain->run()
+#7 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CController.php(1146): CAccessControlFilter->filter()
+#8 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/filters/CInlineFilter.php(59): AdminController->filterAccessControl()
+#9 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter()
+#10 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CController.php(292): CFilterChain->run()
+#11 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CController.php(266): AdminController->runActionWithFilters()
+#12 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CWebApplication.php(276): AdminController->run()
+#13 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CWebApplication.php(135): CWebApplication->runController()
+#14 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#15 /Users/evan.frolich/Sites/yii/yii-base-install/webapp/index.php(13): CWebApplication->run()
+REQUEST_URI=/user/admin/view/id/1
+in /Users/evan.frolich/Sites/yii/yii-base-install/webapp/protected/modules/user/views/admin/view.php (61)
+in /Users/evan.frolich/Sites/yii/yii-base-install/webapp/protected/modules/user/controllers/AdminController.php (60)
+in /Users/evan.frolich/Sites/yii/yii-base-install/webapp/index.php (13)
+2012/04/11 22:23:47 [error] [exception.CException] exception 'CException' with message 'Property "User.i" is not defined.' in /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/base/CComponent.php:131
+Stack trace:
+#0 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/db/ar/CActiveRecord.php(144): CComponent->__get('i')
+#1 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/helpers/CHtml.php(1797): CActiveRecord->__get('i')
+#2 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/zii/widgets/CDetailView.php(212): CHtml::value(Object(User), 'i')
+#3 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CBaseController.php(174): CDetailView->run()
+#4 /Users/evan.frolich/Sites/yii/yii-base-install/webapp/protected/modules/user/views/admin/view.php(76): CBaseController->widget('bootstrap.widge...', Array)
+#5 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CBaseController.php(127): require('/Users/evan.fro...')
+#6 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CBaseController.php(96): CBaseController->renderInternal('/Users/evan.fro...', Array, true)
+#7 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CController.php(870): CBaseController->renderFile('/Users/evan.fro...', Array, true)
+#8 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CController.php(783): CController->renderPartial('view', Array, true)
+#9 /Users/evan.frolich/Sites/yii/yii-base-install/webapp/protected/modules/user/controllers/AdminController.php(60): CController->render('view', Array)
+#10 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/actions/CInlineAction.php(50): AdminController->actionView()
+#11 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#12 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/filters/CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#13 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/filters/CFilter.php(41): CFilterChain->run()
+#14 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CController.php(1146): CFilter->filter(Object(CFilterChain))
+#15 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/filters/CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#16 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#17 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CController.php(292): CFilterChain->run()
+#18 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#19 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CWebApplication.php(276): CController->run('view')
+#20 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('user/admin/view...')
+#21 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#22 /Users/evan.frolich/Sites/yii/yii-base-install/webapp/index.php(13): CApplication->run()
+#23 {main}
+REQUEST_URI=/user/admin/view/id/1
+HTTP_REFERER=http://yii-base-install.local/user/admin/update/id/1
+---
+2012/04/11 23:21:27 [error] [php] scandir(/Users/evan.frolich/Sites/yii/yii-base-install/webapp/protected/user/models): failed to open dir: No such file or directory (/Users/evan.frolich/Sites/yii/yii-base-install/webapp/protected/vendors/generator4fixtures/gii/gii/fixture/FixtureCode.php:86)
+Stack trace:
+#0 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/gii/CCodeGenerator.php(163): FixtureCode->prepare()
+#1 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/gii/CCodeGenerator.php(64): FixtureGenerator->prepare()
+#2 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/actions/CInlineAction.php(50): FixtureGenerator->actionIndex()
+#3 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CController.php(309): CInlineAction->runWithParams()
+#4 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CController.php(287): FixtureGenerator->runAction()
+#5 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CController.php(266): FixtureGenerator->runActionWithFilters()
+#6 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CWebApplication.php(276): FixtureGenerator->run()
+#7 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CWebApplication.php(135): CWebApplication->runController()
+#8 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#9 /Users/evan.frolich/Sites/yii/yii-base-install/webapp/index.php(13): CWebApplication->run()
+REQUEST_URI=/index.php/gii/fixture
+in /Users/evan.frolich/Sites/yii/yii-base-install/webapp/protected/vendors/generator4fixtures/gii/gii/fixture/FixtureCode.php (86)
+in /Users/evan.frolich/Sites/yii/yii-base-install/webapp/protected/vendors/generator4fixtures/gii/gii/fixture/FixtureCode.php (48)
+in /Users/evan.frolich/Sites/yii/yii-base-install/webapp/index.php (13)
+2012/04/17 22:24:14 [error] [exception.CException] exception 'CException' with message 'Alias "ext.bootstrap.components.Bootstrap" is invalid. Make sure it points to an existing PHP file and the file is readable.' in /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/YiiBase.php:318
+Stack trace:
+#0 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/YiiBase.php(198): YiiBase::import('ext.bootstrap.c...', true)
+#1 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/base/CModule.php(387): YiiBase::createComponent(Array)
+#2 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/base/CModule.php(493): CModule->getComponent('bootstrap')
+#3 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/base/CApplication.php(146): CModule->preloadComponents()
+#4 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/YiiBase.php(127): CApplication->__construct('/Users/evan.fro...')
+#5 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/YiiBase.php(100): YiiBase::createApplication('CWebApplication', '/Users/evan.fro...')
+#6 /Users/evan.frolich/Sites/yii/yii-base-install/webapp/index.php(15): YiiBase::createWebApplication('/Users/evan.fro...')
+#7 {main}
+REQUEST_URI=/index.php/user/profile/edit
+HTTP_REFERER=http://yii-base-install.local/index.php/user/profile
+---
+2012/04/17 22:25:03 [error] [exception.CException] exception 'CException' with message 'Alias "ext.bootstrap.components.Bootstrap" is invalid. Make sure it points to an existing PHP file and the file is readable.' in /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/YiiBase.php:318
+Stack trace:
+#0 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/YiiBase.php(198): YiiBase::import('ext.bootstrap.c...', true)
+#1 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/base/CModule.php(387): YiiBase::createComponent(Array)
+#2 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/base/CModule.php(493): CModule->getComponent('bootstrap')
+#3 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/base/CApplication.php(146): CModule->preloadComponents()
+#4 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/YiiBase.php(127): CApplication->__construct('/Users/evan.fro...')
+#5 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/YiiBase.php(100): YiiBase::createApplication('CWebApplication', '/Users/evan.fro...')
+#6 /Users/evan.frolich/Sites/yii/yii-base-install/webapp/index.php(15): YiiBase::createWebApplication('/Users/evan.fro...')
+#7 {main}
+REQUEST_URI=/index.php/user/profile/edit
+HTTP_REFERER=http://yii-base-install.local/index.php/user/profile
+---
+2012/04/17 22:25:14 [error] [exception.CException] exception 'CException' with message 'Alias "ext.bootstrap.components.Bootstrap" is invalid. Make sure it points to an existing PHP file and the file is readable.' in /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/YiiBase.php:318
+Stack trace:
+#0 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/YiiBase.php(198): YiiBase::import('ext.bootstrap.c...', true)
+#1 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/base/CModule.php(387): YiiBase::createComponent(Array)
+#2 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/base/CModule.php(493): CModule->getComponent('bootstrap')
+#3 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/base/CApplication.php(146): CModule->preloadComponents()
+#4 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/YiiBase.php(127): CApplication->__construct('/Users/evan.fro...')
+#5 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/YiiBase.php(100): YiiBase::createApplication('CWebApplication', '/Users/evan.fro...')
+#6 /Users/evan.frolich/Sites/yii/yii-base-install/webapp/index.php(15): YiiBase::createWebApplication('/Users/evan.fro...')
+#7 {main}
+REQUEST_URI=/index.php/user/profile/edit
+HTTP_REFERER=http://yii-base-install.local/index.php/user/profile
+---
+2012/05/01 15:29:11 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "auditTrail/admin".' in /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CWebApplication.php:280
+Stack trace:
+#0 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('auditTrail/admi...')
+#1 /Users/evan.frolich/Sites/yii/yii-base-install/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#2 /Users/evan.frolich/Sites/yii/yii-base-install/webapp/index.php(15): CApplication->run()
+#3 {main}
+REQUEST_URI=/auditTrail/admin
+---
+2012/06/23 15:37:54 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'hatemap.tbl_migration' doesn't exist. The SQL statement executed was: SHOW COLUMNS FROM `tbl_migration`.
