@@ -27,7 +27,7 @@ Ext.define('app.model.Hate', {
         ,proxy: {
             type: 'ajax',
             noCache:false,
-            url:  "http://10.0.2.51:8008/api/12345/hate",
+            url:  "http://10.0.2.51:8008/api/12345/hate/limit/25/0",
             reader: {
                 type: 'json',
                 root: 'data',

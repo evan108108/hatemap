@@ -16,6 +16,13 @@ Ext.define('app.view.form.HateSubmit', {
                 method:'POST',
                 items: [
                     {
+                        xtype: 'image',
+                        itemId:'formImage',
+                        src: 'http://www.sencha.com/assets/images/sencha-avatar-64x64.png',
+                        height:70,
+                        width:120
+                    },
+                    {
                         xtype: 'fieldset',
                         defaults: {
                             labelWidth: '35%'

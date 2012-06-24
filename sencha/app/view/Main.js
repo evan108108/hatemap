@@ -63,8 +63,15 @@ Ext.define('app.view.Main', {
 
                 // Add several items into the toolbar
                 items: [
-                    { iconMask: true, id:'mapButton', iconCls: 'action', data:'hateMap', disabled:true },
-                    { iconMask: true, id:'listButton', /*ui: 'plain',*/ iconCls: 'add',data:'hateList' },
+                    { xtype: 'segmentedbutton', items: [
+                        { iconMask: true, id:'mapButton', iconCls: 'icon-map', data:'hateMap', disabled:true },
+                        { iconMask: true, id:'listButton', iconCls:'icon-list',data:'hateList' }
+                    ]},
+                    { iconMask: true, id:'mapButton', iconCls: 'icon-map', data:'hateMap', disabled:true },
+                    { xtype: 'segmentedbutton', items: [
+                        { iconMask: true, id:'privateButton', iconCls: 'icon-user',  data:'private' },
+                        { iconMask: true, id:'globalButton',  iconCls: 'icon-users', data:'global' }
+                    ]}
                    /*{ iconMask: true, text: 'Test', iconCls: 'action' },
                     { iconMask: true, text: 'Test', ui: 'plain', iconCls: 'bookmarks' },
                     { iconMask: true, ui: 'round', iconCls: 'download' },
@@ -78,8 +85,7 @@ Ext.define('app.view.Main', {
                     	{ iconMask: true, iconCls: 'organize', text: 'Sort' },
                     	{ iconMask: true, iconCls: 'refresh' }
                     ]},*/
-                    { iconMask: true, id:'privateButton', ui: 'back', iconCls: 'reply', data:'private' },
-                    { iconMask: true, id:'globalButton', iconCls: 'x-icon-mask trash', data:'global' }
+                    
                 ]
             }
         ]
