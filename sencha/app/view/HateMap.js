@@ -17,12 +17,17 @@ Ext.define('app.view.HateMap', {
 			}
 		]*/
 	},
+	
 	map:null,
 	markersArray: [],
 	geo:null,
+	position: null,
+	marker:null,
+
 	initialize: function() {
 		var me = this;
-		var position = new google.maps.LatLng(app.app.mapCenter[0], app.app.mapCenter[1]),
+		//var position = new google.maps.LatLng(app.app.mapCenter[0], app.app.mapCenter[1]),
+		var position = new google.maps.LatLng('40.7128243', '-74.0081761'),
 			infoWindow = new google.maps.InfoWindow({ content: app.app.mapText }),
 			map, geo, marker;
 		var markersArray = [];
@@ -35,7 +40,11 @@ Ext.define('app.view.HateMap', {
 			mapOptions: {
 				center: position,
 				zoom: 15,
-		        mapTypeId: google.maps.MapTypeId.ROADMAP
+		        mapTypeId: google.maps.MapTypeId.ROADMAP,
+		        mapTypeControl: false,
+		        panControl: false,
+		        streetViewControl: false,
+		        zoomControl: false
 			}
 		});
 		this.map = map;
@@ -45,15 +54,16 @@ Ext.define('app.view.HateMap', {
 	        map: map.getMap(),
 	        visible: true
 	    });
+		this.marker = marker;
 
 		geo = Ext.create('Ext.util.Geolocation', {
-		    autoUpdate: false,
+		    autoUpdate: true,
 		    listeners: {
 		        locationupdate: function(geo) {
 		        	this.autoUpdate = false;
 		            console.log('lat: '+ geo.getLatitude() + ' long: '+geo.getLongitude());
 		            position = new google.maps.LatLng(geo.getLatitude(), geo.getLongitude());
-		            me.addMarker(position);
+		            me.addUserMarker(position);
 		        },
 		        locationerror: function(geo, bTimeout, bPermissionDenied, bLocationUnavailable, message) {
 		            if(bTimeout){
@@ -65,6 +75,7 @@ Ext.define('app.view.HateMap', {
 		    }
 		});
 		this.geo = geo;
+		this.position = position;
 		geo.updateLocation();
 
 	    google.maps.event.addListener(marker, 'click', function() {
@@ -75,17 +86,25 @@ Ext.define('app.view.HateMap', {
             map.getMap().panTo(position);
         }, 1000);
 
-        setTimeout(function() {
+        setInterval(function() {
         	me.refreshHates();
-        }, 2000);
+        }, 5000);
 	},
-	addMarker: function(location, icon) {
+	addUserMarker: function(location, icon) {
 		console.log('add marker');
 		var map = this.map;
-        var marker = new google.maps.Marker({
-            position: location,
-            map: map.getMap(),
-        });
+		if(this.marker == null) {
+	        marker = new google.maps.Marker({
+	            position: location,
+	            map: map.getMap(),
+	            icon: "touch/resources/images/blue_dot_circle.png"
+	        });
+	        this.marker = marker;
+	    } else {
+	    	this.marker.setIcon("touch/resources/images/blue_dot_circle.png");
+	    	this.marker.setPosition(location);
+	    }
+        //position = marker;
     },
     addHateMarker: function(location, icon) {
 		console.log('add marker');
@@ -96,7 +115,7 @@ Ext.define('app.view.HateMap', {
             position: location,
             animation: google.maps.Animation.DROP,
             map: map.getMap(),
-            icon: "touch/resources/images/hate-unit.png",
+            icon: "touch/resources/images/hate-unit.png"
         });
         google.maps.event.addListener(marker, 'click', function() {
         	console.log(marker.getPosition());
@@ -107,6 +126,7 @@ Ext.define('app.view.HateMap', {
 
     // Removes the overlays from the map, but keeps them in the array
     clearOverlays: function() {
+		var markersArray = this.markersArray;
         if (markersArray) {
             for (i in markersArray) {
                 markersArray[i].setMap(null);
@@ -126,6 +146,7 @@ Ext.define('app.view.HateMap', {
 
     // Deletes all markers in the array by removing references to them
     deleteOverlays: function() {
+		var markersArray = this.markersArray;
         if (markersArray) {
             for (i in markersArray) {
                 markersArray[i].setMap(null);
@@ -140,9 +161,9 @@ Ext.define('app.view.HateMap', {
     	var rec = Ext.getStore('Hates');
     	var arr = [];
 		var tlat=40.714269,tlong=-74.004972;
-		for(i=0; i<10; i++) {
+		for(i=0; i<300; i++) {
 			arr[i] = {id:i, lat:tlat+'',long:tlong+'',weight:0,url:'http',desc:'Hate Tag Hate',address:''};
-			console.log('lat: '+tlat+' long: '+tlong);
+			//console.log('lat: '+tlat+' long: '+tlong);
 			if(i%2 == 0) tlat += Math.random() / 1000;
 			else tlat -= Math.random() / 1000;
 
@@ -150,6 +171,8 @@ Ext.define('app.view.HateMap', {
 			else tlong += Math.random() / 1000;
 		}
     	
+    	me.deleteOverlays();
+
     	for(i in arr) {
     		var position = new google.maps.LatLng(arr[i].lat, arr[i].long);
     		me.addHateMarker( position );
