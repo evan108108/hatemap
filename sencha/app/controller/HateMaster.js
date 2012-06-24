@@ -12,12 +12,18 @@ Ext.define('app.controller.HateMaster', {
 			listButton: '#listButton',
 			privateButton: '#privateButton',
 			globalButton: '#globalButton',
-			navigationToolbar:'#navigationToolbar'
+			navigationToolbar:'#navigationToolbar',
+
+			formLat:'#formLat',
+			formLong:'#formLong',
+			formImgUrl:'#formImgUrl'
 		},
 		xtype: 'hateMaster'
 	},
 	stores:['Hates'],
 	init: function() {
+		Hate.current_lat = Hate.current_long = '23.23';
+		window.kk = 'fkasdjf;adsf';
 		var me = this;
 		this.app = this.getApplication();	//	short ref to our app
 		this.app.vp = Ext.Viewport;			//	set app level ref to our viewport
@@ -61,10 +67,14 @@ Ext.define('app.controller.HateMaster', {
 	},
 	launch:function(){
 		var me = this;
-		var device_uid = 131321;
+		Hate.devicePhotoFail = this.onDevicePhotoFailure;
+        Hate.devicePhotoSuccess = this.onDevicePhotoSuccess;
+        //REMOVE
+
+
 		//me.getHatesStore().load();
 
-		$.get("http://10.0.2.51:8008/api/" + device_uid +"/hate", function(result){
+		$.get("http://10.0.2.51:8008/api/" + Hate.device_uid +"/hate", function(result){
             console.log(result.data);
             me.getHatesStore().setData(result.data);
        });
@@ -175,17 +185,103 @@ Ext.define('app.controller.HateMaster', {
     },
 
 	onHateAction:function(){
-		console.log('on hate action');
-		if (!this.hateForm) {
+		var me = this;
+        //create modal.
+        var isPhone = Ext.os.deviceType == 'Phone',
+            overlay;
+
+        overlay = Ext.Viewport.add({
+            xtype: 'panel',
+
+            // We give it a left and top property to make it floating by default
+            left: 0,
+            top: 0,
+
+            // Make it modal so you can click the mask to hide the overlay
+            modal: true,
+            hideOnMaskTap: true,
+
+            // Make it hidden by default
+            hidden: true,
+
+            // Set the width and height of the panel
+            width: isPhone ? 260 : 400,
+            height: isPhone ? '70%' : 400,
+
+            // Here we specify the #id of the element we created in `index.html`
+            contentEl: 'content',
+
+            // Style the content and make it scrollable
+            styleHtmlContent: true,
+            scrollable: true,
+
+            // Insert a title docked at the top with a title
+            items: [
+                {
+                    docked: 'top',
+                    xtype: 'toolbar',
+                    title: 'Overlay Title'
+                },
+                {
+                	xtype:'container',
+                	layout:'vbox',
+                	items:[
+                		{
+		                	xtype:'button',
+		                	text:'Camera',
+		                	handler:function(){
+		                		if(typeof Hate.capturePhoto == 'function')
+	                				Hate.capturePhoto();
+	                			
+		                	}
+		                	
+		                },
+		                {
+		                	xtype:'button',
+		                	text:'Photo Gallery',
+		                	handler:function(){
+		                		if(typeof Hate.getPhoto == 'function')
+	                				Hate.getPhoto();
+	                			else {
+	                				me.onShowHateForm('kkk')
+	                			}
+		                		overlay.hide();
+		                	}
+		                }
+                	]
+                }
+               
+            ]
+        });
+
+        var button = this.getHateButton();
+        overlay.showBy(button);
+    },
+
+    
+    onDevicePhotoFailure:function(){
+    	overlay.hide();
+    },
+    onDevicePhotoSuccess:function(url){
+        this.onShowHateForm(url);
+        overlay.hide();
+    },
+    onShowHateForm:function(url){
+
+        if (!this.hateForm) {
             this.hateForm = Ext.create('app.view.form.HateSubmit');
         }
 
         // Bind the record onto the edit contact view
         //this.hateForm.setRecord(this.getShowContact().getRecord());
+        //this.hateForm.setImageUrl('url');
+        this.getFormLat().setValue(Hate.current_lat);
+        this.getFormLong().setValue(Hate.current_long);
+        this.getFormImgUrl().setValue(url);
 
+        $("#image-url").val(url);
         this.getMain().push(this.hateForm);
-	},
-
+    },
 	/**
 	 * Fired when form changes.
 	 */
@@ -197,8 +293,6 @@ Ext.define('app.controller.HateMaster', {
     	
     },
     onCreateHate:function(){
-    	console.log('do submit')
-    	console.log(this.hateForm)
     	this.hateForm.doSubmit();
     },
 

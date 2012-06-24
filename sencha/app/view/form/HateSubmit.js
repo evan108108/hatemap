@@ -12,7 +12,7 @@ Ext.define('app.view.form.HateSubmit', {
             {
                 xtype: 'formpanel',
                 id:'new_hate_form',
-                url:'http://10.0.2.51:8008/api/131313/hate',
+                url:'http://10.0.2.51:8008/api/'+Hate.device_uid+'/hate',
                 method:'POST',
                 items: [
                     {
@@ -48,11 +48,13 @@ Ext.define('app.view.form.HateSubmit', {
                             {
                                 xtype: 'textfield',
                                 label: 'Current Lat',
+                                 itemId:'formLong',
                                 name: 'lat'
                             },
                             {
                                 xtype: 'textfield',
                                 label: 'Current Long',
+                                itemId:'formLat',
                                 name: 'long'
                             },
                             {
@@ -72,6 +74,7 @@ Ext.define('app.view.form.HateSubmit', {
                             {
                                 xtype: 'textfield',
                                 label: 'Url',
+                                itemId:'formImgUrl',
                                 name: 'url'
                             }
                         ]

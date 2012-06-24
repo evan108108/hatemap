@@ -48,11 +48,13 @@ Ext.define('app.view.form.HateSubmit', {
                             {
                                 xtype: 'textfield',
                                 label: 'Current Lat',
+                                 itemId:'formLong',
                                 name: 'lat'
                             },
                             {
                                 xtype: 'textfield',
                                 label: 'Current Long',
+                                itemId:'formLat',
                                 name: 'long'
                             },
                             {
@@ -64,7 +66,7 @@ Ext.define('app.view.form.HateSubmit', {
                     },
                     {
                         xtype: 'fieldset',
-                        title: 'Image',
+                        title: 'Image',                        
                         defaults: {
                             labelWidth: '35%'
                         },
@@ -72,6 +74,8 @@ Ext.define('app.view.form.HateSubmit', {
                             {
                                 xtype: 'textfield',
                                 label: 'Url',
+                                id:'image-url',
+                                itemId:'formImgUrl',
                                 name: 'url'
                             }
                         ]
@@ -108,6 +112,9 @@ Ext.define('app.view.form.HateSubmit', {
         });
     },
     
+    setImageUrl:function(url){
+        this.down('form').down('#imageUrl').setValue(url);
+    },
 
     onKeyUp: function() {
         console.log('On fucking key up!')

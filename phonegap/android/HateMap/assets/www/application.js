@@ -16,6 +16,7 @@ function onDeviceReady() {
 }
 
 Hate.getPhoto = function(source) {
+	source = source || pictureSource.PHOTOLIBRARY;
     navigator.camera.getPicture(uploadPhoto, photoFailed, { quality: 50, destinationType: destinationType.FILE_URI, sourceType: source });
 }
 
@@ -68,10 +69,11 @@ Hate.win = function(r) {
     var json_response = JSON.parse(r.response);
     
     if(json_response["success"] == false) {
-    	alert(json_response["message"]);
+    	Hate.devicePhotoFail();
     }
     else {
     	Hate.uploaded_image_url = json_response["data"]["url"];	
+    	Hate.devicePhotoSuccess(Hate.uploaded_image_url);
     	//$("#hate_url").val(uploaded_image_url);
     }
 }
