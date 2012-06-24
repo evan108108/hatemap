@@ -49,8 +49,15 @@ class HateController extends ERestController
     return $ext[(count($ext)-1)];
   }
 
+  public function doCustomRestGetMe($var=null)
+  {
+     $this->renderJson(array('success'=>true, 'message'=>'Records Retrieved Successfully', 'data'=>$this->device->hates));
+    //$this->renderJson(array('success'=>true, 'message'=>'Image Uploaded', 'data'=>array('url'=>Yii::app()->getBaseUrl(true) . "/images/hates/" . $filename)));
+  }
+
   public function doCustomRestPostImage($var=null)
   {
+    //throw new CHttpException(200, 'Error: Could not upload image'); 
     //Directory where uploaded images are saved
     $dirname = str_replace('/protected', '', Yii::app()->getBasePath()) . '/images/hates'; 
     // If uploading file
@@ -65,6 +72,48 @@ class HateController extends ERestController
      throw new CHttpException(200, 'Error: Could not upload image'); 
   }
 
+   /* This is broken out as a sperate method from actionResUpdate 
+   * To allow for easy overriding in the controller
+   * and to allow for easy unit testing
+    */ 
+  /*
+  public function doRestUpdate($id, $data)
+  {    
+    if(is_array($data['tags']))
+    {
+      $tags = array();
+      foreach($data['tags'] as $tag)
+      {
+        $tags = Tag::setTag($tag);
+      }
+      $data['tags'] = $tags;
+    }
+    $model = $this->saveModel($this->loadModel($id), $data);
+    $this->renderJson(array('success'=>true, 'message'=>'Record Updated', 'data'=>array('id'=>$id)));
+  }
+   */
+  /**
+   * This is broken out as a sperate method from actionRestCreate 
+   * To allow for easy overriding in the controller
+   * and to alow for easy unit testing
+   */ 
+  public function doRestCreate($data)
+  {
+    $data['device_id'] = $this->device->id;
+    $model = $this->getModel();
+    
+    $ids = $this->saveModel($model, $data);
+
+    $this->renderJson(array('success'=>true, 'message'=>'Record(s) Created', 'data'=>array('id'=>$ids)));
+  }
+
+  public function doRestUpdate($id, $data)
+  {   
+    $data['device_id'] = $this->device->id; 
+    $model = $this->saveModel($this->loadModel($id), $data);
+    $this->renderJson(array('success'=>true, 'message'=>'Record Updated', 'data'=>array('id'=>$id)));
+  }
+
 	/**
 	 * Displays a particular model.
 	 * @param integer $id the ID of the model to be displayed
@@ -74,7 +123,7 @@ class HateController extends ERestController
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
 		));
-	}
+  }
 
 	/**
 	 * Creates a new model.
@@ -152,7 +201,8 @@ class HateController extends ERestController
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
-	}
+  }
+
 
 	/**
 	 * Manages all models.

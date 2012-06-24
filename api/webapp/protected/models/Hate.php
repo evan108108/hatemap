@@ -55,7 +55,7 @@ class Hate extends ArBaseModel
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
       array('id, device_id, lat, long, weight, url, desc, address, lud_dtm, crt_dtm', 'safe', 'on'=>'search'),
-      array('image', 'file', 'types'=>'jpg, gif, png'),
+      //array('image', 'file', 'types'=>'jpg, gif, png'),
 		);
 	}
 
@@ -116,5 +116,19 @@ class Hate extends ArBaseModel
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
-	}
+  }
+
+  /*
+  public function getAttributes($name=true)
+  {
+    $attrExt = array();
+
+    
+    $attrExt['tags'] = $this->tags;
+    if(is_null($attrExt['tags'])) $attrExt['tags'] = array();
+    
+		//$this->cleanUsr();
+    return CMap::mergeArray(parent::getAttributes($name), $attrExt);
+  }
+   */
 }
