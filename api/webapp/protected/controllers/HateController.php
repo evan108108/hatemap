@@ -49,6 +49,30 @@ class HateController extends ERestController
     return $ext[(count($ext)-1)];
   }
 
+  public function doCustomRestGetLimit($var)
+  {
+    $criteria = new CDbCriteria();
+    
+    if(isset($var[1]))
+    {
+      $criteria->limit = $var[0];// . ", " . $var[1];
+      $criteria->offset = $var[1];
+    }
+    else
+    {
+      $criteria->limit = $var;
+      $criteria->offset = 0;
+    }
+
+
+    $this->renderJson(array('success'=>true, 'message'=>'Records Retrieved Successfully', 'data'=>$this->getModel()->recently()->findAll($criteria)));
+  }
+  
+  public function doRestList()
+  {
+    $this->renderJson(array('success'=>true, 'message'=>'Records Retrieved Successfully', 'data'=>$this->getModel()->recently()->findAll()));
+  }
+
   public function doCustomRestGetMe($var=null)
   {
      $this->renderJson(array('success'=>true, 'message'=>'Records Retrieved Successfully', 'data'=>$this->device->hates));

@@ -71,6 +71,15 @@ class Hate extends ArBaseModel
 			'tags' => array(self::MANY_MANY, 'Tag', 'hate_tag(hate_id, tag_id)'),
 		);
 	}
+  
+  public function scopes()
+    {
+      return array(
+        'recently'=>array(
+          'order'=>'id DESC',
+        ),
+      );
+    }
 
 	/**
 	 * @return array customized attribute labels (name=>label)
