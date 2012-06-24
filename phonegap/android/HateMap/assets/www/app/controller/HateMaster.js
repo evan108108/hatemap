@@ -101,7 +101,7 @@ Ext.define('app.controller.HateMaster', {
     },
     onMainPush: function(view, item) {
         console.log('onMainPush')
-        var hateButton = this.getHateButton();
+        //var hateButton = this.getHateButton();
 
         this.activeItem = this.getMain().getActiveItem();
 
@@ -126,7 +126,7 @@ Ext.define('app.controller.HateMaster', {
            this.getMapButton().disable();
         } else {
             //this.hideHateButton();
-            this.getMapButton().enable();
+            //this.getMapButton().enable();
         }
        
     },
@@ -157,10 +157,10 @@ Ext.define('app.controller.HateMaster', {
             //This is the only thing that is not DRY.
             this.getHateList().deselectAll();
             //this.showHateButton();
-             this.getMapButton().disable();
+            // this.getMapButton().disable();
         } else {
            // this.hideHateButton();
-            this.getMapButton().enable();
+           // this.getMapButton().enable();
         }
 
     },

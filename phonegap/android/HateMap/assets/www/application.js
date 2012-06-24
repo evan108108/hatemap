@@ -8,7 +8,7 @@ function onDeviceReady() {
     pictureSource=navigator.camera.PictureSourceType;
     destinationType=navigator.camera.DestinationType;
     Hate.device_uid = device_uid = device.uuid;
-    getGeolocation();
+    Hate.getGeolocation();
     
     //
     app.mainLaunch();
