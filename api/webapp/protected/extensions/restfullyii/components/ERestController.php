@@ -123,6 +123,7 @@ class ERestController extends Controller
    */ 
   public function filterRestAccessRules( $c )
   {
+    //error_log('I got a request', 0);
     Yii::app()->errorHandler->errorAction = '/' . $this->uniqueid . '/error';
     /*
     if(!(isset($_SERVER['HTTP_X_'.self::APPLICATION_ID.'_USERNAME']) and isset($_SERVER['HTTP_X_'.self::APPLICATION_ID.'_PASSWORD']))) {
@@ -306,7 +307,23 @@ class ERestController extends Controller
    */ 
   public function data()
   {
-    return json_decode(file_get_contents("php://input"), true);
+    //error_log(CJSON::encode($_OPTIONS), 0);
+    parse_str(file_get_contents("php://input"), $someData);
+    //error_log(CJSON::encode($someData), 0);
+
+    //error_log(file_get_contents("php://input"), 0);
+    $data = json_decode(file_get_contents("php://input"), true);
+    if(!empty($data))
+    {
+      error_log('data was not empty: ' . CJSON::encode($data));
+      return $data;
+    }
+    else
+    {
+      return $someData;
+    }
+
+    //return json_decode(file_get_contents("php://input"), true);
   }
 
   /**

@@ -99,14 +99,13 @@ class HateController extends ERestController
    */ 
   public function doRestCreate($data)
   {
+    //error_log(CJSON::encode($data), 0); 
     $data['device_id'] = $this->device->id;
     $model = $this->getModel();
     
     if((empty($data['lat']) || empty($data['long'])) && !empty($data['address']))
     {
       $geo = CJSON::decode(file_get_contents('http://maps.googleapis.com/maps/api/geocode/json?address=' . urlencode($data['address']) . '&sensor=false'));
-      //print_r($geo);
-      //exit();
       if(!empty($geo['results'][0]['geometry']['location']))
       {
         $data['lat'] = $geo['results'][0]['geometry']['location']['lat'];

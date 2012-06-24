@@ -9,6 +9,7 @@
         array('<controller>/restUpdate', 'pattern'=>'api/<uid:\w*>/<controller:\w+>/<var:\w+>/<id:\d+>', 'verb'=>'PUT'),
         array('<controller>/restDelete', 'pattern'=>'api/<uid:\w*>/<controller:\w+>/<id:\d+>', 'verb'=>'DELETE'),
         array('<controller>/restCreate', 'pattern'=>'api/<uid:\w*>/<controller:\w+>', 'verb'=>'POST'),
+        array('<controller>/restCreate', 'pattern'=>'api/<uid:\w*>/<controller:\w+>', 'verb'=>'OPTIONS'),
         array('<controller>/restCreate', 'pattern'=>'api/<uid:\w*>/<controller:\w+>/<id:\w+>', 'verb'=>'POST'),
         
 				'<controller:\w+>/<id:\d+>'=>'<controller>/view',
