@@ -339,7 +339,7 @@ class ERestController extends Controller
   /**
    * Helper for saving single/mutliple models 
    */ 
-  private function saveModel($model, $data)
+  protected function saveModel($model, $data)
   {
     if(!isset($data[0]))
       $models[] = $this->setModelAttributes($model, $data);

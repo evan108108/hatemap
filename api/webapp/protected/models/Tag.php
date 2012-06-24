@@ -73,6 +73,27 @@ class Tag extends ArBaseModel
 			'crt_dtm' => 'Crt Dtm',
 		);
 	}
+  
+  public static function setTag($tag)
+  {
+    $mtag = new Tag();
+    if(is_array($tag))
+    {
+      if(!$tag['id'])
+      {
+        $mtag->attributes = $tag;
+        if($mtag->save(false)) 
+          $mtag->refresh();
+      }
+    }
+    else
+    {
+      $mtag->name = $tag;
+      if($mtag->save(false)) 
+          $mtag->refresh();
+    }
+    return $tag;
+  }
 
 	/**
 	 * Retrieves a list of models based on the current search/filter conditions.
