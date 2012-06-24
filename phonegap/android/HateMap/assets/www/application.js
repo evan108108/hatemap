@@ -19,10 +19,6 @@ function photoFailed(message){
 	alert("photoFailed: " + message);
 }
 
-function uploadPhoto(imageURI){
-	$('#photo_thumbnail').attr("src", imageURI).show();
-}
-
 function getGeolocation() {
 	navigator.geolocation.getCurrentPosition(geolocationSuccess, geolocationError, { maximumAge: 25000, timeout: 25000, enableHighAccuracy: true });
 }
@@ -33,4 +29,33 @@ function geolocationSuccess(position) {
 
 function geolocationError(error) {
 	alert('code: '    + error.code    + '\n' + 'message: ' + error.message + '\n');
+}
+
+function uploadPhoto(imageURI) {
+	$('#photo_thumbnail').attr("src", imageURI).show();
+	
+    var options = new FileUploadOptions();
+    options.fileKey="file";
+    options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
+    options.mimeType="image/jpeg";
+
+    var params = new Object();
+    params.value1 = "test";
+    params.value2 = "param";
+
+    options.params = params;
+
+    var ft = new FileTransfer();
+    ft.upload(imageURI, "http://10.69.11.61:8008/api/99/hate/image", win, fail, options);
+}
+
+function win(r) {
+	alert(JSON.stringify(r));
+    alert("Code = " + r.responseCode);
+    alert("Response = " + r.response);
+    alert("Sent = " + r.bytesSent);
+}
+
+function fail(error) {
+    alert("An error has occurred: Code = " = error.code);
 }
