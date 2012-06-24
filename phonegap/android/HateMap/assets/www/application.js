@@ -32,7 +32,6 @@ Hate.getGeolocation = function() {
 }
 
 Hate.geolocationSuccess = function(position) {
-	alert("geolocationSuccess called");
 	current_lat = position.coords.latitude;
 	current_long = position.coords.longitude;
 	Hate.current_lat = current_lat;

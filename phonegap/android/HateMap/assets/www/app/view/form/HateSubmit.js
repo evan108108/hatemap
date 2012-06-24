@@ -102,7 +102,7 @@ Ext.define('app.view.form.HateSubmit', {
         var me = this;
         Ext.Viewport.setMasked({
             xtype: 'loadmask',
-            message: 'Hello'
+            message: 'Saving'
         });
         $.ajax({
             type: 'POST',

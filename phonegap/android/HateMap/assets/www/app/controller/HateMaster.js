@@ -222,7 +222,7 @@ Ext.define('app.controller.HateMaster', {
                 {
                     docked: 'top',
                     xtype: 'toolbar',
-                    title: 'Overlay Title'
+                    title: 'What do you hate?'
                 },
                 {
                     xtype:'container',
@@ -292,7 +292,10 @@ Ext.define('app.controller.HateMaster', {
         this.showSaveButton();
     },
     onHateFormResult:function(success, result){
-        this.getMain.pop();
+    	//alert(2323);
+    	var record = result.data;
+    	//var hate = Ext.create
+        this.getMain().pop();
         
     },
     onCreateHate:function(){
