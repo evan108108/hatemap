@@ -1,7 +1,7 @@
 Ext.define('app.view.HateDetails', {
     extend: 'Ext.Container',
 	requires: ['app.view.template.HateDetails'],
-	xtype: 'contactDetails',
+	xtype: 'hateDetails',
 	
 	config: {
 		layout: {

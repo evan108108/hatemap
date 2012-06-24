@@ -5,7 +5,7 @@ Ext.define('app.view.HateMap', {
 
 	config: {
 
-		title: 'Location',
+		title: 'HateMap',
 		iconCls: 'locate',
 
 		layout: 'fit',

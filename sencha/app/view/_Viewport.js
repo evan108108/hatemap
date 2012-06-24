@@ -29,7 +29,14 @@ Ext.define('app.view.Viewport', {
 			},
 			{ 	// Adding by xtype
 				xtype: 'hateList'
+			},
+			{
+				xtype:'hateSubmit'
 			}
 		]
+	},
+	sayFuck:function(){
+		alert('fuck!')
 	}
+
 });
