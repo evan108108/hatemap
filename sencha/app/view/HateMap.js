@@ -150,7 +150,7 @@ Ext.define('app.view.HateMap', {
 	    }
         //position = marker;
     },
-    addHateMarker: function(location, icon, url) {
+    addHateMarker: function(location, icon, obj) {
 		console.log('add marker');
 		var me = this;
 		var map = this.map;
@@ -165,7 +165,7 @@ Ext.define('app.view.HateMap', {
         	console.log(marker.getPosition());
         	// show the info box with thumbnail
         	console.log('window width: '+window.innerWidth)
-        	me.infoWindow.setContent('<div style="overflow:hidden"><img style="width:'+window.innerWidth/3+'px" src="'+url+'" /></div>');
+        	me.infoWindow.setContent('<div style="overflow:hidden; padding-bottom:20px"><div style="width:320px"><b>'+obj.desc+'</b></div><br/><img style="width:'+window.innerWidth/3+'px" src="'+obj.url+'" /></div>');
         	me.infoWindow.open(marker.getMap(), marker);
 
         	google.maps.event.addListener(me.infoWindow, 'closeclick', function() {
@@ -235,7 +235,7 @@ Ext.define('app.view.HateMap', {
     		if(arr[i].weight < 3) icon = "touch/resources/images/hate-unit.png";
     		else if(arr[i].weight < 6 && arr[i].weight >= 3) icon = "touch/resources/images/hate-unit.png";
     		else if(arr[i].weight < 9 && arr[i].weight >= 6) icon = "touch/resources/images/hate-unit-max2.png";
-    		me.addHateMarker( position, icon,  arr[i].data.url);
+    		me.addHateMarker( position, icon,  arr[i].data);
     	}
     }
 });
