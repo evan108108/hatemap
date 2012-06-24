@@ -1,3 +1,7 @@
 .icnHom {
 -webkit-mask-box-image: url(data:image/png;base64,iVBORw0KGg..../LHEKZXOUWaBm2Pk95DylTf);
 }
+
+.toolbars {
+	  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #740202), color-stop(2%, #c90303), color-stop(100%, #740202));
+}

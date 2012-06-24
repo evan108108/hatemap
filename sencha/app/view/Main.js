@@ -12,6 +12,7 @@ Ext.define('app.view.Main', {
         autoDestroy: false,
 
         navigationBar: {
+            cls: 'toolbars',
             //ui: 'sencha',
             items: [
                 {
@@ -54,6 +55,7 @@ Ext.define('app.view.Main', {
                 xtype: 'toolbar',
                 id:'navigationToolbar',
                 docked: 'bottom',
+                cls: 'toolbars',
 
                 // Make the toolbar scrollable
                 scrollable: {
@@ -63,7 +65,7 @@ Ext.define('app.view.Main', {
 
                 // Add several items into the toolbar
                 items: [
-                    { iconMask: true, id:'mapButton', iconCls: 'action', data:'hateMap', disabled:true },
+                    { iconMask: true, id:'mapButton', iconCls: 'action', ui: 'plain', data:'hateMap', disabled:true },
                     { iconMask: true, id:'listButton', /*ui: 'plain',*/ iconCls: 'add',data:'hateList' },
                    /*{ iconMask: true, text: 'Test', iconCls: 'action' },
                     { iconMask: true, text: 'Test', ui: 'plain', iconCls: 'bookmarks' },
