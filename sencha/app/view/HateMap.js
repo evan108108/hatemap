@@ -162,14 +162,11 @@ Ext.define('app.view.HateMap', {
             icon: icon
         });
         google.maps.event.addListener(marker, 'click', function() {
-        	console.log(marker.getPosition());
         	// show the info box with thumbnail
-        	console.log('window width: '+window.innerWidth)
         	me.infoWindow.setContent('<div style="overflow:hidden; padding-bottom:20px"><div style="width:320px"><b>'+obj.desc+'</b></div><br/><img style="width:'+window.innerWidth/3+'px" src="'+obj.url+'" /></div>');
         	me.infoWindow.open(marker.getMap(), marker);
 
         	google.maps.event.addListener(me.infoWindow, 'closeclick', function() {
-	    		console.log('here');
 	    		me.infoWindow.close();
 	    	})
         });
@@ -224,12 +221,12 @@ Ext.define('app.view.HateMap', {
 		}
 		var rec = Ext.getStore('Hates');
 		arr = rec.data.all;
-		console.log(rec);
+		//console.log(rec);
     	
     	me.deleteOverlays();
 
     	for(i in arr) {
-    		console.log(arr[i].data);
+    		//console.log(arr[i].data);
     		var position = new google.maps.LatLng(arr[i].data.lat, arr[i].data.long);
     		var icon = "touch/resources/images/hate-unit.png";
     		if(arr[i].weight < 3) icon = "touch/resources/images/hate-unit.png";
