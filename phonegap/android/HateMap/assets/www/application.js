@@ -1,10 +1,13 @@
+
 function init() {
     document.addEventListener("deviceready", onDeviceReady, true);
 }
 
 function onDeviceReady() {
     pictureSource=navigator.camera.PictureSourceType;
-    destinationType=navigator.camera.DestinationType;	
+    destinationType=navigator.camera.DestinationType;
+    device_uid = device.uuid;
+    getGeolocation();
 }
 
 function getPhoto(source) {
@@ -24,11 +27,14 @@ function getGeolocation() {
 }
 
 function geolocationSuccess(position) {
-	alert("location success, latitude: " + position.coords.latitude + ", longitude: " + position.coords.longitude);
+	current_lat = position.coords.latitude;
+	current_long = position.coords.longitude;
+	$("#hate_lat").val(current_lat);
+	$("#hate_long").val(current_long);
 }
 
 function geolocationError(error) {
-	alert('code: '    + error.code    + '\n' + 'message: ' + error.message + '\n');
+	alert('We could not find your GPS location. Make sure to turn on GPS.');
 }
 
 function uploadPhoto(imageURI) {
@@ -40,22 +46,59 @@ function uploadPhoto(imageURI) {
     options.mimeType="image/jpeg";
 
     var params = new Object();
-    params.value1 = "test";
-    params.value2 = "param";
-
     options.params = params;
 
     var ft = new FileTransfer();
-    ft.upload(imageURI, "http://10.69.11.61:8008/api/99/hate/image", win, fail, options);
+    ft.upload(imageURI, "http://10.0.2.51:8008/api/" + device_uid +"/hate/image", win, fail, options);
 }
 
 function win(r) {
-	alert(JSON.stringify(r));
-    alert("Code = " + r.responseCode);
-    alert("Response = " + r.response);
-    alert("Sent = " + r.bytesSent);
+//	alert(JSON.stringify(r));
+//    alert("Code = " + r.responseCode);
+//    alert("Response = " + r.response);
+//    alert("Sent = " + r.bytesSent);
+    var json_response = JSON.parse(r.response);
+    
+    if(json_response["success"] == false) {
+    	alert(json_response["message"]);
+    }
+    else {
+    	uploaded_image_url = json_response["data"]["url"];	
+    	$("#hate_url").val(uploaded_image_url);
+    }
 }
 
 function fail(error) {
     alert("An error has occurred: Code = " = error.code);
+}
+
+function getMyHates() {	
+	$.get("http://10.0.2.51:8008/api/" + device_uid +"/hate/me", function(data){
+		alert("successful get my hates: " + JSON.stringify(data));
+	});
+}
+
+function getAllHates() {
+	$.get("http://10.0.2.51:8008/api/" + device_uid +"/hate", function(data){
+		alert("successful get all hates: " + JSON.stringify(data));
+	});
+}
+
+function postMyHate() {
+	alert($("#new_hate_form").serialize());
+//	$.post("http://10.0.2.51:8008/api/" + device_uid +"/hate", $("#new_hate_form").serialize(), function(data) {
+//		alert("successful post returned: " + JSON.stringify(data));
+//	});
+	$.ajax({
+		  type: 'POST',
+		  url: "http://10.0.2.51:8008/api/" + device_uid +"/hate",
+		  data: $("#new_hate_form").serialize(),
+		  success: function(data){
+			  alert("successful post returned: " + JSON.stringify(data));
+		  },
+		  error: function(error){
+			  alert(JSON.stringify(error));
+		  },
+		  dataType: "json"
+		});
 }
