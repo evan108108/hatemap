@@ -2,6 +2,8 @@
  *	App container
  *======================================================*/
 Ext.Loader.setConfig({ enabled: true });
+Ext.namespace('Hate');
+
 Ext.application({
 	name: 'app',
 	phoneStartupScreen: '',
@@ -10,7 +12,8 @@ Ext.application({
 	views: 	[
 		//'Contacts',
 		'HateList',
-		'HateMap'
+		'HateMap',
+		'window.HateSubmit'
 	],
 	stores: [
 		//'Contacts',
@@ -18,7 +21,7 @@ Ext.application({
 	],
 	controllers: [/*'Viewport',*/ 'HateMaster'],
 	launch: function() {
-		Ext.create('app.view.Viewport', {
+		Hate.Viewport = Ext.create('app.view.Viewport', {
 			
 		});
 		

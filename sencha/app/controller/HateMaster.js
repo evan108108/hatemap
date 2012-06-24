@@ -46,6 +46,10 @@ Ext.define('app.controller.HateMaster', {
 		console.log(rec);
 	},
 	onHateAction:function(){
-		
+		//Ext.Viewport.sayFuck(1);
+		console.log(Ext.Viewport);
+		console.log(Hate.Viewport)
+		console.log('on hate action');
+		Hate.Viewport.setActiveItem(2)
 	}
 });
