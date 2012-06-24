@@ -23,17 +23,46 @@ Ext.define('app.view.HateMap', {
 	geo:null,
 	position: null,
 	marker:null,
+	clearIntVal:0,
+	infoWindow:null,
 
 	initialize: function() {
-		var me = this;
+		var me = this;/*
+		var infoWindowOptions = {
+                 content: "sf"
+                ,disableAutoPan: false
+                ,maxWidth: 0
+                ,pixelOffset: new google.maps.Size(-140, 0)
+                ,zIndex: null
+                ,boxStyle: { 
+                  background: "url('tipbox.gif') no-repeat"
+                  ,opacity: 0.75
+                  ,width: "280px"
+                 }
+                ,closeBoxMargin: "10px 2px 2px 2px"
+                ,closeBoxURL: "http://www.google.com/intl/en_us/mapfiles/close.gif"
+                ,infoBoxClearance: new google.maps.Size(1, 1)
+                ,isHidden: false
+                ,pane: "floatPane"
+                ,enableEventPropagation: false
+        };*/
 		//var position = new google.maps.LatLng(app.app.mapCenter[0], app.app.mapCenter[1]),
 		var position = new google.maps.LatLng('40.7128243', '-74.0081761'),
-			infoWindow = new google.maps.InfoWindow({ content: app.app.mapText }),
-			map, geo, marker;
+			infoWindow = new google.maps.InfoWindow({
+				content: "sdf",
+				title: "your momo"
+			}),
+			map, geo, marker, clearIntVal;
 		var markersArray = [];
 		this.markersArray = markersArray;
-
+		this.clearIntVal = clearIntVal;
+		this.infoWindow = infoWindow;
+		window.infoWindow = this.infoWindow;
 		this.callParent();
+
+	    google.maps.event.addListener(infoWindow, 'closeclick', function() {
+	    	console.log('here');
+	    })
 
 		map = this.add({
 			xtype: 'map',
@@ -45,6 +74,21 @@ Ext.define('app.view.HateMap', {
 		        panControl: false,
 		        streetViewControl: false,
 		        zoomControl: false
+			},
+			listeners: {
+				maprender: function(comp, map) {
+					var me = this;
+					google.maps.event.addListener(map, 'center_changed', function() {
+				    	console.log('center changed');
+					    // 3 seconds after the center of the map has changed, pan back to the
+					    // marker.
+					    clearInterval(me.clearIntVal);
+					    me.clearIntVal = setTimeout(function() {
+					    	console.log('move to center '+me.clearIntVal);
+					      	map.panTo(marker.getPosition());
+					    }, 3000);
+					  });
+				}
 			}
 		});
 		this.map = map;
@@ -78,17 +122,15 @@ Ext.define('app.view.HateMap', {
 		this.position = position;
 		geo.updateLocation();
 
-	    google.maps.event.addListener(marker, 'click', function() {
-	        infoWindow.open(map, marker);
-	    });
-
 	    setTimeout(function() {
             map.getMap().panTo(position);
         }, 1000);
 
+	    me.refreshHates();
+	    /*
         setInterval(function() {
         	me.refreshHates();
-        }, 5000);
+        }, 20000);*/
 	},
 	addUserMarker: function(location, icon) {
 		console.log('add marker');
@@ -119,6 +161,15 @@ Ext.define('app.view.HateMap', {
         });
         google.maps.event.addListener(marker, 'click', function() {
         	console.log(marker.getPosition());
+        	// show the info box with thumbnail
+        	console.log('window width: '+window.innerWidth)
+        	me.infoWindow.setContent('<div style="overflow:hidden"><img onclick="window.infoWindow.close()" style="width:'+window.innerWidth/3+'px" src="assets/photos/4.jpg" /></div>');
+        	me.infoWindow.open(me.map, marker);
+
+        	google.maps.event.addListener(me.infoWindow, 'closeclick', function() {
+	    		console.log('here');
+	    		me.infoWindow.close();
+	    	})
         });
 
         markersArray.push(marker);
