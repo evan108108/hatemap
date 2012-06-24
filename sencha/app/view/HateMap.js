@@ -131,12 +131,13 @@ Ext.define('app.view.HateMap', {
         }, 5000);
 
         setInterval(function() {
-        	me.refreshHates();
-        }, 15000);
+        	//me.refreshHates();
+        }, 20000);
 	},
 	addUserMarker: function(location, icon) {
 		console.log('add marker');
 		var map = this.map;
+		var me = this;
 		if(this.marker == null) {
 	        marker = new google.maps.Marker({
 	            position: location,
@@ -148,22 +149,46 @@ Ext.define('app.view.HateMap', {
 	    	this.marker.setIcon("touch/resources/images/blue_dot_circle.png");
 	    	this.marker.setPosition(location);
 	    }
+
+    	me.infoWindow.setContent('<div style="overflow:hidden; padding-bottom:0px"><div style="width:220px; font-size:2.0em"><b>300+ </b><img src="touch/resources/images/HatesMapLogo.png" /><br/><b> near you!</b></div><br/></div>');
+    	me.infoWindow.open(this.marker.getMap(), this.marker);
+
+    	google.maps.event.addListener(me.infoWindow, 'closeclick', function() {
+    		me.infoWindow.close();
+    	})
+
+        google.maps.event.addListener(this.marker, 'click', function(obj) {
+        	// show the info box with thumbnail
+        	me.infoWindow.setContent('<div style="overflow:hidden; padding-bottom:0px"><div style="width:220px; font-size:2.0em"><b>300+ </b><img src="touch/resources/images/HatesMapLogo.png" /><br/><b> near you!</b></div><br/></div>');
+        	me.infoWindow.open(this.marker.getMap(), this.marker);
+
+        	google.maps.event.addListener(me.infoWindow, 'closeclick', function() {
+	    		me.infoWindow.close();
+	    	})
+        });
+
         //position = marker;
     },
     addHateMarker: function(location, icon, obj) {
-		console.log('add marker');
+		//console.log('add marker '+obj.data.lat);
+		//console.log(obj);
+		var myObj = obj;
 		var me = this;
 		var map = this.map;
 		var markersArray = this.markersArray;
+		var pos = new google.maps.LatLng(obj.data.lat, obj.data.long);
         var marker = new google.maps.Marker({
-            position: location,
+            position: pos,
             animation: google.maps.Animation.DROP,
             map: map.getMap(),
             icon: icon
         });
-        google.maps.event.addListener(marker, 'click', function() {
+        var strDesc = obj.data.desc;
+        var strUrl = obj.data.url;
+
+        google.maps.event.addListener(marker, 'click', function(obj) {
         	// show the info box with thumbnail
-        	me.infoWindow.setContent('<div style="overflow:hidden; padding-bottom:20px"><div style="width:320px"><b>'+obj.desc+'</b></div><br/><img style="width:'+window.innerWidth/3+'px" src="'+obj.url+'" /></div>');
+        	me.infoWindow.setContent('<div style="overflow:hidden; padding-bottom:20px"><div style="width:320px"><b>'+strDesc+'</b></div><br/><img style="width:'+window.innerWidth/3+'px" src="'+strUrl+'" /></div>');
         	me.infoWindow.open(marker.getMap(), marker);
 
         	google.maps.event.addListener(me.infoWindow, 'closeclick', function() {
@@ -209,30 +234,46 @@ Ext.define('app.view.HateMap', {
     	console.log('refreshHates');
     	var me = this;
     	var arr = [];
-		var tlat=40.714269,tlong=-74.004972;
-		for(i=0; i<300; i++) {
-			arr[i] = {id:i, lat:tlat+'',long:tlong+'',weight:(Math.random()*10),url:'http',desc:'Hate Tag Hate',address:''};
-			//console.log('lat: '+tlat+' long: '+tlong);
-			if(i%2 == 0) tlat += Math.random() / 1000;
-			else tlat -= Math.random() / 1000;
-
-			if(i%2 == 0) tlong -= Math.random() / 1000;
-			else tlong += Math.random() / 1000;
-		}
-		var rec = Ext.getStore('Hates');
-		arr = rec.data.all;
-		//console.log(rec);
-    	
     	me.deleteOverlays();
+    	me.iterateMe(0, 3);
+    },
 
-    	for(i in arr) {
-    		//console.log(arr[i].data);
-    		var position = new google.maps.LatLng(arr[i].data.lat, arr[i].data.long);
-    		var icon = "touch/resources/images/hate-unit.png";
-    		if(arr[i].weight < 3) icon = "touch/resources/images/hate-unit.png";
-    		else if(arr[i].weight < 6 && arr[i].weight >= 3) icon = "touch/resources/images/hate-unit.png";
-    		else if(arr[i].weight < 9 && arr[i].weight >= 6) icon = "touch/resources/images/hate-unit-max2.png";
-    		me.addHateMarker( position, icon,  arr[i].data);
-    	}
+    showHateById: function(id) {
+    	console.log('refreshHates');
+    	var me = this;
+    	var arr = [];
+    	me.deleteOverlays();
+    	me.iterateMe(0, id);
+    },
+
+    iterateMe: function(i, showSingleHate) {
+    	var me = this;
+    	var rec = Ext.getStore('Hates');
+		arr = rec.data.all;
+    	pos = new google.maps.LatLng(arr[i].data.lat, arr[i].data.long);
+		var icon = "touch/resources/images/hate-unit.png";
+		//console.log(arr[i].data.weight);
+		if(arr[i].data.weight < 3) icon = "touch/resources/images/hate-unit.png";
+		else if(arr[i].data.weight < 9 && arr[i].data.weight >= 3) icon = "touch/resources/images/hate-unit.png";
+		else if(arr[i].data.weight < 11 && arr[i].data.weight >= 9) icon = "touch/resources/images/hate-unit-max2.png";
+		
+		if(showSingleHate != null) {
+			console.log("HDHDHD");
+			pos = new google.maps.LatLng(arr[showSingleHate].data.lat, arr[showSingleHate].data.long);
+			me.addHateMarker( pos, "touch/resources/images/hate-unit-max.png",  arr[showSingleHate]);
+		}
+		me.addHateMarker( pos, icon,  arr[i]);
+		pos = new google.maps.LatLng(arr[i].data.lat, arr[i].data.long);
+		me.addHateMarker( pos, icon,  arr[i+1]);
+		pos = new google.maps.LatLng(arr[i].data.lat, arr[i].data.long);
+		me.addHateMarker( pos, icon,  arr[i+2]);
+		pos = new google.maps.LatLng(arr[i].data.lat, arr[i].data.long);
+		me.addHateMarker( pos, icon,  arr[i+3]);
+		pos = new google.maps.LatLng(arr[i].data.lat, arr[i].data.long);
+		me.addHateMarker( pos, icon,  arr[i+4]);
+		i+=5;
+    	setTimeout(function() {
+    		me.iterateMe(i);
+    	}, i*1);
     }
 });
