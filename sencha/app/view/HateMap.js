@@ -157,14 +157,14 @@ Ext.define('app.view.HateMap', {
             position: location,
             animation: google.maps.Animation.DROP,
             map: map.getMap(),
-            icon: "touch/resources/images/hate-unit.png"
+            icon: icon
         });
         google.maps.event.addListener(marker, 'click', function() {
         	console.log(marker.getPosition());
         	// show the info box with thumbnail
         	console.log('window width: '+window.innerWidth)
-        	me.infoWindow.setContent('<div style="overflow:hidden"><img onclick="window.infoWindow.close()" style="width:'+window.innerWidth/3+'px" src="assets/photos/4.jpg" /></div>');
-        	me.infoWindow.open(me.map, marker);
+        	me.infoWindow.setContent('<div style="overflow:hidden"><img style="width:'+window.innerWidth/3+'px" src="assets/photos/4.jpg" /></div>');
+        	me.infoWindow.open(marker.getMap(), marker);
 
         	google.maps.event.addListener(me.infoWindow, 'closeclick', function() {
 	    		console.log('here');
@@ -213,7 +213,7 @@ Ext.define('app.view.HateMap', {
     	var arr = [];
 		var tlat=40.714269,tlong=-74.004972;
 		for(i=0; i<300; i++) {
-			arr[i] = {id:i, lat:tlat+'',long:tlong+'',weight:0,url:'http',desc:'Hate Tag Hate',address:''};
+			arr[i] = {id:i, lat:tlat+'',long:tlong+'',weight:(Math.random()*10),url:'http',desc:'Hate Tag Hate',address:''};
 			//console.log('lat: '+tlat+' long: '+tlong);
 			if(i%2 == 0) tlat += Math.random() / 1000;
 			else tlat -= Math.random() / 1000;
@@ -226,7 +226,11 @@ Ext.define('app.view.HateMap', {
 
     	for(i in arr) {
     		var position = new google.maps.LatLng(arr[i].lat, arr[i].long);
-    		me.addHateMarker( position );
+    		var icon = "touch/resources/images/hate-unit.png";
+    		if(arr[i].weight < 3) icon = "touch/resources/images/hate-unit.png";
+    		else if(arr[i].weight < 6 && arr[i].weight >= 3) icon = "touch/resources/images/hate-unit.png";
+    		else if(arr[i].weight < 9 && arr[i].weight >= 6) icon = "touch/resources/images/hate-unit-max2.png";
+    		me.addHateMarker( position, icon );
     	}
     },
 
