@@ -27,7 +27,8 @@ Ext.application({
 		//'Contacts',
 		'HateList',
 		'HateMap',
-		'window.HateSubmit'
+		'window.HateSubmit',
+		'HateDetails'
 	],
 	stores: [
 		//'Contacts',

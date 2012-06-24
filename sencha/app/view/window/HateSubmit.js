@@ -98,6 +98,7 @@ Ext.define('app.view.window.HateSubmit', {
     },
 
     onKeyUp: function() {
+    	console.log('On fucking key up!')
         this.fireEvent('change', this);
     }
 });

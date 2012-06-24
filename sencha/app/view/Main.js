@@ -62,7 +62,7 @@ Ext.define('app.view.Main', {
 
                 // Add several items into the toolbar
                 items: [
-                    { iconMask: true, id:'mapButton', iconCls: 'action', data:'hateMap' },
+                    { iconMask: true, id:'mapButton', iconCls: 'action', data:'hateMap', disabled:true },
                     { iconMask: true, id:'listButton', /*ui: 'plain',*/ iconCls: 'add',data:'hateList' },
                    /*{ iconMask: true, text: 'Test', iconCls: 'action' },
                     { iconMask: true, text: 'Test', ui: 'plain', iconCls: 'bookmarks' },
