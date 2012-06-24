@@ -32,15 +32,10 @@ Ext.define('app.controller.HateMaster', {
                 pop: 'onMainPop'
             },
             hateForm:{
-            	change:me.onHateFormChange
+            	change:'onHateFormChange'
             },
 			hateList: {
 				itemtap:'showHateDetail'
-				/*itemtap: function(view, idx){
-					var rec = Ext.getStore('Hates').getAt(idx);
-					console.log(rec);
-					me.showHateDetail(rec);
-				}*/
 			},
 			hateButton:{
 				tap:'onHateAction'
@@ -69,19 +64,19 @@ Ext.define('app.controller.HateMaster', {
 		switch(item.id){
 			case 'mapButton':
 				this.getMain().pop();
-			break;
+			break
 
 			case 'listButton':
 				var ref = 'app.view.HateList';
 				if(!this.listView) this.listView = Ext.create(ref);
 				this.getMain().push(this.listView);
-			break;
+			break
 			case 'privateButton':
 				console.log('Make private filtering');
-			break;
+			break
 			case 'globalButton':
 				console.log('Make public filtering');
-			break;
+			break
 		}
 		
 	},
@@ -90,9 +85,19 @@ Ext.define('app.controller.HateMaster', {
         var hateButton = this.getHateButton();
 
         this.activeItem = this.getMain().getActiveItem();
-       
+
+       var type = this.activeItem.xtype;
+       switch(type){
+    		case 'hateMap':
+    		case 'hateList':
+    			this.enableFilters();
+    		break
+    		default:
+    			this.disableFilters();
+    		break
+    	}
+
         if (this.activeItem.xtype == "hateMap") {
-            //this.getContacts().deselectAll();
            this.showHateButton();
            this.getMapButton().disable();
         } else {
@@ -106,8 +111,22 @@ Ext.define('app.controller.HateMaster', {
     	console.log('onMainPop')
     	
     	this.activeItem = this.getMain().getActiveItem();
+    	
+    	var type = this.activeItem.xtype;
+
+    	switch(type){
+    		case 'hateMap':
+    		case 'hateList':
+    			this.enableFilters();
+    		break;
+    		default:
+    			this.disableFilters();
+    		break;
+    	}
 
         if (this.activeItem.xtype == "hateMap") {
+        	//This is the only thing that is not DRY.
+        	this.getHateList().deselectAll();
             this.showHateButton();
              this.getMapButton().disable();
         } else {
@@ -124,11 +143,12 @@ Ext.define('app.controller.HateMaster', {
 	showHateDetail: function(list, index, node, record) {
         
         if (!this.showHate) {
-            this.showHate = Ext.create('app.view.HateDetails');
+            //this.showHate = Ext.create('app.view.HateDetails');
+            this.showHate = Ext.create('app.view.carousel.CarouselSlide');
         }
 
         // Bind the record onto the show contact view
-        this.showHate.setRecord(record);
+        //this.showHate.setRecord(record);
 
         // Push the show contact view into the navigation view
         this.getMain().push(this.showHate);
@@ -194,5 +214,14 @@ Ext.define('app.controller.HateMaster', {
         }
 
         saveButton.hide();
+    },
+    //Filter state handling
+    disableFilters:function(){
+    	this.getPrivateButton().disable();
+    	this.getGlobalButton().disable();
+    },
+    enableFilters:function(){
+    	this.getPrivateButton().enable();
+    	this.getGlobalButton().enable();
     }
 });
