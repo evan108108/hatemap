@@ -1,4 +1,4 @@
-Ext.define('app.view.window.HateSubmit', {
+Ext.define('app.view.form.HateSubmit', {
     extend: 'Ext.Container',
     xtype: 'hateSubmit',
 
@@ -18,19 +18,18 @@ Ext.define('app.view.window.HateSubmit', {
                         title: 'Information',
                         items: [
                             {
-                                xtype: 'textfield',
-                                label: 'First Name',
-                                name: 'firstName'
+                                xtype: 'textareafield',
+                                maxRows: 6,
+                                label: 'Description',
+                                name: 'description'
                             },
                             {
-                                xtype: 'textfield',
-                                label: 'Last Name',
-                                name: 'lastName'
-                            },
-                            {
-                                xtype: 'textfield',
-                                label: 'Title',
-                                name: 'title'
+                                xtype: 'spinnerfield',
+                                name: 'weight',
+                                minValue: 0,
+                                maxValue: 10,
+                                increment: 1,
+                                label: 'Hate Value'
                             }
                         ]
                     },
@@ -39,36 +38,36 @@ Ext.define('app.view.window.HateSubmit', {
                         defaults: {
                             labelWidth: '35%'
                         },
-                        title: 'Contact Information',
+                        title: 'Geolocalization',
                         items: [
                             {
                                 xtype: 'textfield',
-                                label: 'Telephone',
-                                name: 'telephone'
+                                label: 'Current Lat',
+                                name: 'lat'
+                            },
+                            {
+                                xtype: 'textfield',
+                                label: 'Current Long',
+                                name: 'long'
+                            },
+                            {
+                                xtype: 'textfield',
+                                label: 'Address',
+                                name: 'address'
                             }
                         ]
                     },
                     {
                         xtype: 'fieldset',
-                        title: 'Address',
+                        title: 'Image',
                         defaults: {
                             labelWidth: '35%'
                         },
                         items: [
                             {
                                 xtype: 'textfield',
-                                label: 'City',
-                                name: 'city'
-                            },
-                            {
-                                xtype: 'textfield',
-                                label: 'State',
-                                name: 'state'
-                            },
-                            {
-                                xtype: 'textfield',
-                                label: 'Country',
-                                name: 'country'
+                                label: 'Url',
+                                name: 'url'
                             }
                         ]
                     }
@@ -98,6 +97,7 @@ Ext.define('app.view.window.HateSubmit', {
     },
 
     onKeyUp: function() {
+        console.log('On fucking key up!')
         this.fireEvent('change', this);
     }
 });

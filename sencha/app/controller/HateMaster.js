@@ -4,13 +4,15 @@ Ext.define('app.controller.HateMaster', {
 		refs: {
 			main: 'mainview',
 			mapView:'mapView',
-			hates: 'hateDetails',
+			hateList: 'hateList',
+			hateForm:'hateSubmit',
 			hateButton:'#hateButton',
 			saveButton: '#saveButton',
 			mapButton: '#mapButton',
 			listButton: '#listButton',
 			privateButton: '#privateButton',
 			globalButton: '#globalButton',
+			navigationToolbar:'#navigationToolbar'
 		},
 		xtype: 'hateMaster'
 	},
@@ -30,11 +32,11 @@ Ext.define('app.controller.HateMaster', {
                 push: 'onMainPush',
                 pop: 'onMainPop'
             },
-			hateDetails: {
-				itemtap: function(view, idx){
-					var rec = Ext.getStore('Hates').getAt(idx);
-					me.showHateDetail(rec);
-				}
+            hateForm:{
+            	change:'onHateFormChange'
+            },
+			hateList: {
+				itemtap:'showHateDetail'
 			},
 			hateButton:{
 				tap:'onHateAction'
@@ -62,17 +64,20 @@ Ext.define('app.controller.HateMaster', {
 	onUpdateView:function(item){
 		switch(item.id){
 			case 'mapButton':
-				/*var ref = 'app.view.HateMap';
-				if(!this.mapView) this.mapView = Ext.create(ref);
-				this.getMain().push(this.mapView);*/
 				this.getMain().pop();
-			break;
+			break
 
 			case 'listButton':
 				var ref = 'app.view.HateList';
 				if(!this.listView) this.listView = Ext.create(ref);
 				this.getMain().push(this.listView);
-			break;
+			break
+			case 'privateButton':
+				console.log('Make private filtering');
+			break
+			case 'globalButton':
+				console.log('Make public filtering');
+			break
 		}
 		
 	},
@@ -80,41 +85,90 @@ Ext.define('app.controller.HateMaster', {
 		console.log('onMainPush')
         var hateButton = this.getHateButton();
 
-        if (item.xtype == "contact-show") {
-            //this.getContacts().deselectAll();
+        this.activeItem = this.getMain().getActiveItem();
 
-            this.showHateButton();
+       var type = this.activeItem.xtype;
+       switch(type){
+    		case 'hateMap':
+    		case 'hateList':
+    			this.enableFilters();
+    			this.getNavigationToolbar().show();
+    		break;
+    		case 'hateCarousel':
+    			this.getNavigationToolbar().hide();
+    		break;
+    		default:
+    			this.disableFilters();
+    			this.getNavigationToolbar().show();
+    		break
+    	}
+
+        if (this.activeItem.xtype == "hateMap") {
+           this.showHateButton();
+           this.getMapButton().disable();
         } else {
             this.hideHateButton();
+            this.getMapButton().enable();
         }
+       
     },
 
     onMainPop: function(view, item) {
     	console.log('onMainPop')
-        if (item.xtype == "hateSubmit") {
+    	
+    	this.activeItem = this.getMain().getActiveItem();
+    	
+    	var type = this.activeItem.xtype;
+
+    	switch(type){
+    		case 'hateMap':
+    		case 'hateList':
+    			this.enableFilters();
+    			this.getNavigationToolbar().show();
+    		break;
+    		case 'hateCarousel':
+    			this.getNavigationToolbar().hide();
+    		break;
+    		default:
+    			this.disableFilters();
+    			this.getNavigationToolbar().show();
+    		break;
+    	}
+
+        if (this.activeItem.xtype == "hateMap") {
+        	//This is the only thing that is not DRY.
+        	this.getHateList().deselectAll();
             this.showHateButton();
+             this.getMapButton().disable();
         } else {
             this.hideHateButton();
+            this.getMapButton().enable();
         }
+
     },
 	showHates: function() {
-		//var contacts = Ext.create('app.view.HateMap');
-		// this.app.vp.add(contacts);
-		console.log(this.app.vp)
 		console.log('SHOW FUCKING CONTACTS')
 		//this.app.vp.setActiveItem(contacts);
 	},
 	
-	showHateDetail: function(rec){
-		var details = Ext.create('app.view.HateDetail', {data: rec.data});
-		this.app.vp.add(details);
-		this.app.vp.setActiveItem(details);
-		console.log(rec);
-	},
+	showHateDetail: function(list, index, node, record) {
+        
+        if (!this.showHate) {
+            //this.showHate = Ext.create('app.view.HateDetails');
+            this.showHate = Ext.create('app.view.carousel.Carousel');
+        }
+
+        // Bind the record onto the show contact view
+        //this.showHate.setRecord(record);
+
+        // Push the show contact view into the navigation view
+        this.getMain().push(this.showHate);
+    },
+
 	onHateAction:function(){
 		console.log('on hate action');
 		if (!this.hateForm) {
-            this.hateForm = Ext.create('app.view.window.HateSubmit');
+            this.hateForm = Ext.create('app.view.form.HateSubmit');
         }
 
         // Bind the record onto the edit contact view
@@ -122,6 +176,13 @@ Ext.define('app.controller.HateMaster', {
 
         this.getMain().push(this.hateForm);
 	},
+
+	/**
+	 * Fired when form changes.
+	 */
+	onHateFormChange: function() {
+        this.showSaveButton();
+    },
 
 	//BUTTON TOOLBAR HANDLING.
 	showHateButton: function() {
@@ -164,5 +225,14 @@ Ext.define('app.controller.HateMaster', {
         }
 
         saveButton.hide();
+    },
+    //Filter state handling
+    disableFilters:function(){
+    	this.getPrivateButton().disable();
+    	this.getGlobalButton().disable();
+    },
+    enableFilters:function(){
+    	this.getPrivateButton().enable();
+    	this.getGlobalButton().enable();
     }
 });

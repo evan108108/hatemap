@@ -4,7 +4,7 @@ Ext.define('app.view.HateList', {
 	xtype: 'hateList',
 
 	config: {
-		title: 'Feed',
+		title: 'Hate Feed',
 		iconCls: "team",
 		emptyText: 'No Hates :-(',
 		store: 'Hates',

@@ -1,5 +1,4 @@
 Ext.define('app.view.HateMap', {
-
 	extend: 'Ext.Container',
 	xtype: 'hateMap',
 

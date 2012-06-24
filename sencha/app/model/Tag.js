@@ -1,14 +1,9 @@
-Ext.define('app.model.Hate', {
+Ext.define('app.model.Tag', {
     extend: 'Ext.data.Model',
 	config: {
 	    fields: [
 	    	{ name:'id', type:'int' },
-			{ name: 'lat', type: 'string' },
-			{ name: 'long', type: 'string' },
-			{ name: 'weight', type: 'int', defaultValue:0},
-			{ name: 'url', type: 'string' },
-			{ name: 'desc', type: 'string' },
-			{ name: 'address', type: 'string' },
+			{ name: 'name', type: 'string' },
 			{ name: 'lud_dtm', type: 'date' },
             { name: 'crt_dtm', type: 'date' }
 		]//,
