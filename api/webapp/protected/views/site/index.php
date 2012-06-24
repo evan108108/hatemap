@@ -75,7 +75,13 @@
 	    });
 		this.marker = marker;
 
-		
+	   me.infoWindow.setContent('<div style="overflow:hidden; padding-bottom:0px"><div style="width:220px;font-size:2.0em;"><b>300+ </b><img src="/images/map/HatesMapLogo.png" /><br/><b> near you!</b></div><br/></div>');
+    	me.infoWindow.open(this.marker.getMap(), this.marker);
+
+    	google.maps.event.addListener(me.infoWindow, 'closeclick', function() {
+    		me.infoWindow.close();
+      })
+
 		this.position = position;
 
 	    setTimeout(function() {
@@ -90,7 +96,7 @@
         	//me.refreshHates();
         }, 15000);
 
-        $.get("http://10.0.2.51:8008/api/local/hate", function(result){
+        $.get("/api/local/hate", function(result){
             console.log(result.data);
             window.results = result.data;
             me.refreshHates();
@@ -104,6 +110,7 @@
 	function addUserMarker(location, icon) {
 		console.log('add marker');
 		var map = this.map;
+		var me = this;
 		if(this.marker == null) {
 	        marker = new google.maps.Marker({
 	            position: location,
@@ -115,6 +122,24 @@
 	    	this.marker.setIcon("/images/map/blue_dot_circle.png");
 	    	this.marker.setPosition(location);
 	    }
+
+	    me.infoWindow.setContent('<div style="overflow:hidden; padding-bottom:0px"><div style="width:220px"><b>300+ </b><img src="/images/map/HatesMapLogo.png" /><br/><b> near you!</b></div><br/></div>');
+    	me.infoWindow.open(this.marker.getMap(), this.marker);
+
+    	google.maps.event.addListener(me.infoWindow, 'closeclick', function() {
+    		me.infoWindow.close();
+    	})
+
+        google.maps.event.addListener(this.marker, 'click', function(obj) {
+        	// show the info box with thumbnail
+        	me.infoWindow.setContent('<div style="overflow:hidden; padding-bottom:0px"><div style="width:220px; font-size: 15px"><b>300+ </b><img src="/images/map/HatesMapLogo.png" /><br/><b> near you!</b></div><br/></div>');
+        	me.infoWindow.open(this.marker.getMap(), this.marker);
+
+        	google.maps.event.addListener(me.infoWindow, 'closeclick', function() {
+	    		me.infoWindow.close();
+	    	})
+      });
+        
         //position = marker;
     }
 
@@ -179,7 +204,7 @@
     }
 
     function refreshHates() {
-    	console.log('refreshHates');
+    	//console.log('refreshHates');
     	var me = this;
     	var arr = [];
     	
@@ -194,7 +219,7 @@
 		arr = rec;
     	pos = new google.maps.LatLng(arr[i].lat, arr[i].long);
 		var icon = "/images/map/hate-unit.png";
-		console.log(arr[i].weight);
+		//console.log(arr[i].weight);
 		if(arr[i].weight < 3) icon = "/images/map/hate-unit.png";
 		else if(arr[i].weight < 9 && arr[i].weight >= 3) icon = "/images/map/hate-unit.png";
 		else if(arr[i].weight < 11 && arr[i].weight >= 9) icon = "/images/map/hate-unit-max2.png";
@@ -215,9 +240,9 @@
     }
 
     initialize();
-</script>
+</script>	
 
-    <di
+    
 </center>
   </body>
 </html>
