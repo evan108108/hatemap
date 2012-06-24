@@ -4,10 +4,14 @@ function init() {
 }
 
 function onDeviceReady() {
+	alert("onDeviceReady called");
     pictureSource=navigator.camera.PictureSourceType;
     destinationType=navigator.camera.DestinationType;
     device_uid = device.uuid;
     getGeolocation();
+    
+    //
+    app.mainLaunch();
 }
 
 function getPhoto(source) {
@@ -27,10 +31,13 @@ function getGeolocation() {
 }
 
 function geolocationSuccess(position) {
+	alert("geolocationSuccess called");
 	current_lat = position.coords.latitude;
 	current_long = position.coords.longitude;
-	$("#hate_lat").val(current_lat);
-	$("#hate_long").val(current_long);
+	Hate.current_lat = current_lat;
+	Hate.current_long = current_long;
+//	$("#hate_lat").val(current_lat);
+//	$("#hate_long").val(current_long);
 }
 
 function geolocationError(error) {

@@ -1,39 +1,21 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
 	<head>
-		<title>HateMap</title>
+	    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	    <title id="page-title">Sencha Touch 2.0 MVC Boilerplate</title>
+	    <link rel="stylesheet" type="text/css" href="touch/resources/css/sencha-touch.css">
+	    <link rel="stylesheet" type="text/css" href="assets/app.css">
+	    <script type="text/javascript">
+	    	Hate = {};
+	    	
+	    </script>
 		<script type="text/javascript" src="jquery.js"></script>
 		<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
 		<script type="text/javascript" src="application.js"></script>
+	    <script type="text/javascript" src="touch/sencha-touch-debug.js"></script>
+	    <script type="text/javascript" src="app/app.js"></script>
 	</head>
 	<body onload="init()">
-		<h1>HATE HATE HATE</h1>
-		2
-		<button onclick="capturePhoto();">Capture Photo</button>
-		<button onclick="getPhoto(pictureSource.PHOTOLIBRARY);">From Photo Library</button>
-		<button onclick="getGeolocation();">Get Geolocation</button>
-		<button onclick="getMyHates();">Get My Hates</button>
-		<button onclick="getAllHates();">Get All Hates</button>
-
-		<img id="photo_thumbnail" src="" style="width:auto;height:120px;"></img>
-		
-		<form accept-charset="UTF-8" id="new_hate_form" method="post">
-			<label for="_description">Description</label><br />
-			<input id="hate_description" name="hate[description]" size="30" type="text" value="" /><br />
-			
-			<label for="_lat">Current Lat</label><br />
-			<input id="hate_lat" name="hate[lat]" type="text" value="" /><br />
-			
-			<label for="_long">Current Long</label><br />
-			<input id="hate_long" name="hate[long]" type="text" value="" /><br />
-			
-			<label for="_address">Address</label><br />
-			<input id="hate_address" name="hate[address]" size="30" type="text" value="" /><br />
-  			
-  			<input id="hate_url" name="hate[url]" type="text" value="" />
- 			
- 			<input id="submit_hate" name="commit" type="submit" value="HATE!" onclick="postMyHate();" />
-		</form>
-		
+		<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 	</body>
 </html>

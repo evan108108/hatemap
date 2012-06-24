@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>HateMap</title>
+		<script type="text/javascript" src="jquery.js"></script>
+		<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+		<script type="text/javascript" src="application.js"></script>
+	</head>
+	<body onload="init()">
+		<h1>HATE HATE HATE</h1>
+		2
+		<button onclick="capturePhoto();">Capture Photo</button>
+		<button onclick="getPhoto(pictureSource.PHOTOLIBRARY);">From Photo Library</button>
+		<button onclick="getGeolocation();">Get Geolocation</button>
+		<button onclick="getMyHates();">Get My Hates</button>
+		<button onclick="getAllHates();">Get All Hates</button>
+
+		<img id="photo_thumbnail" src="" style="width:auto;height:120px;"></img>
+		
+		<form accept-charset="UTF-8" id="new_hate_form" method="post">
+			<label for="_description">Description</label><br />
+			<input id="hate_description" name="hate[description]" size="30" type="text" value="" /><br />
+			
+			<label for="_lat">Current Lat</label><br />
+			<input id="hate_lat" name="hate[lat]" type="text" value="" /><br />
+			
+			<label for="_long">Current Long</label><br />
+			<input id="hate_long" name="hate[long]" type="text" value="" /><br />
+			
+			<label for="_address">Address</label><br />
+			<input id="hate_address" name="hate[address]" size="30" type="text" value="" /><br />
+  			
+  			<input id="hate_url" name="hate[url]" type="text" value="" />
+ 			
+ 			<input id="submit_hate" name="commit" type="submit" value="HATE!" onclick="postMyHate();" />
+		</form>
+		
+	</body>
+</html>
