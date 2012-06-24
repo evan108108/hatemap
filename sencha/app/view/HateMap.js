@@ -1,11 +1,10 @@
 Ext.define('app.view.HateMap', {
-
 	extend: 'Ext.Container',
 	xtype: 'hateMap',
 
 	config: {
 
-		title: 'Location',
+		title: 'HateMap',
 		iconCls: 'locate',
 
 		layout: 'fit',

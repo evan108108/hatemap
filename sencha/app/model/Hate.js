@@ -29,7 +29,7 @@ Ext.define('app.model.Hate', {
             url: CONFIG.basePath + '/api/' + CONFIG.bizUnit + '/hate',
             reader: {
                 type: 'json',
-                root: 'hate',
+                root: 'data',
                 successProperty: 'success',
                 totalProperty  : 'totalCount'
             }
