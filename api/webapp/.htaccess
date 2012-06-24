@@ -1,0 +1,3 @@
+# enable cross domain access control
+Header always set Access-Control-Allow-Origin "*"
+Header always set Access-Control-Allow-Methods "PUT, DELETE, POST, GET, OPTIONS"
