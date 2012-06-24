@@ -68,7 +68,8 @@ Hate.win = function(r) {
     var json_response = JSON.parse(r.response);
     
     if(json_response["success"] == false) {
-    	Hate.devicePhotoFail();
+    	//Hate.devicePhotoFail();
+    	app.app.getController('HateMaster').onDevicePhotoFailure();
     }
     else {
     	Hate.uploaded_image_url = json_response["data"]["url"];	
@@ -80,6 +81,7 @@ Hate.win = function(r) {
 
 Hate.fail = function(error) {
     alert("An error has occurred: Code = " = error.code);
+    app.app.getController('HateMaster').onDevicePhotoFailure();
 }
 
 Hate.getMyHates = function() {	
