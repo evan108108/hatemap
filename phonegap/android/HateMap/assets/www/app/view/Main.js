@@ -67,7 +67,7 @@ Ext.define('app.view.Main', {
                         { iconMask: true, id:'mapButton', iconCls: 'icon-map', data:'hateMap', disabled:true },
                         { iconMask: true, id:'listButton', iconCls:'icon-list',data:'hateList' }
                     ]},
-                    { iconMask: true, id:'hateButton', iconCls: 'icon-map', data:'hateMap', disabled:true },
+                    { iconMask: true, id:'hateButton', iconCls: 'icon-map', data:'hateMap' },
                     { xtype: 'segmentedbutton', items: [
                         { iconMask: true, id:'privateButton', iconCls: 'icon-user',  data:'private' },
                         { iconMask: true, id:'globalButton',  iconCls: 'icon-users', data:'global' }
