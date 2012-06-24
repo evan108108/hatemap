@@ -76,7 +76,9 @@ Ext.define('app.controller.HateMaster', {
 
 		$.get("http://10.0.2.51:8008/api/" + Hate.device_uid +"/hate", function(result){
             console.log(result.data);
+
             me.getHatesStore().setData(result.data);
+           // call refreshHates on mapView // TODO::
        });
 	},
 	onUpdateView:function(item){
