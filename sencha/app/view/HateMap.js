@@ -83,21 +83,26 @@ Ext.define('app.view.HateMap', {
 	addMarker: function(location, icon) {
 		console.log('add marker');
 		var map = this.map;
-        marker = new google.maps.Marker({
+        var marker = new google.maps.Marker({
             position: location,
             map: map.getMap(),
         });
     },
     addHateMarker: function(location, icon) {
 		console.log('add marker');
+		var me = this;
 		var map = this.map;
 		var markersArray = this.markersArray;
-        marker = new google.maps.Marker({
+        var marker = new google.maps.Marker({
             position: location,
             animation: google.maps.Animation.DROP,
             map: map.getMap(),
             icon: "touch/resources/images/hate-unit.png",
         });
+        google.maps.event.addListener(marker, 'click', function() {
+        	console.log(marker.getPosition());
+        });
+
         markersArray.push(marker);
     },
 
@@ -129,13 +134,14 @@ Ext.define('app.view.HateMap', {
             markersArray.length = 0;
         }
     },
+
     refreshHates: function() {
     	console.log('refreshHates');
     	var me = this;
     	var rec = Ext.getStore('Hates');
     	var arr = [];
 		var tlat=40.714269,tlong=-74.004972;
-		for(i=0; i<500; i++) {
+		for(i=0; i<10; i++) {
 			arr[i] = {id:i, lat:tlat+'',long:tlong+'',weight:0,url:'http',desc:'Hate Tag Hate',address:''};
 			console.log('lat: '+tlat+' long: '+tlong);
 			if(i%2 == 0) tlat += Math.random() / 1000;
@@ -146,8 +152,13 @@ Ext.define('app.view.HateMap', {
 		}
     	
     	for(i in arr) {
-    		position = new google.maps.LatLng(arr[i].lat, arr[i].long);
+    		var position = new google.maps.LatLng(arr[i].lat, arr[i].long);
     		me.addHateMarker( position );
     	}
+    },
+
+    markerClicked: function() {
+    	// do something
+    	alert(str);
     }
 });
