@@ -1,7 +1,9 @@
 Ext.define('app.view.form.HateSubmit', {
     extend: 'Ext.Container',
     xtype: 'hateSubmit',
-
+    require:[
+        'Ext.Ajax'
+    ],
     config: {
         title: 'Create',
         layout: 'fit',
@@ -9,6 +11,9 @@ Ext.define('app.view.form.HateSubmit', {
         items: [
             {
                 xtype: 'formpanel',
+                id:'new_hate_form',
+                url:'http://10.0.2.51:8008/api/131313/hate',
+                method:'POST',
                 items: [
                     {
                         xtype: 'fieldset',
@@ -21,7 +26,7 @@ Ext.define('app.view.form.HateSubmit', {
                                 xtype: 'textareafield',
                                 maxRows: 6,
                                 label: 'Description',
-                                name: 'description'
+                                name: 'desc'
                             },
                             {
                                 xtype: 'spinnerfield',
@@ -82,19 +87,27 @@ Ext.define('app.view.form.HateSubmit', {
 
         record: null
     },
-
-    updateRecord: function(newRecord) {
-        this.down('formpanel').setRecord(newRecord);
+    doSubmit:function(){
+        var me = this;
+        Ext.Viewport.setMasked({
+            xtype: 'loadmask',
+            message: 'Hello'
+        });
+        $.ajax({
+            type: 'POST',
+            url: "http://10.0.2.51:8008/api/12345/hate",
+            data: $("#new_hate_form").serialize(),
+            success: function(data){
+                Ext.Viewport.setMasked(false);
+                me.fireEvent('onsubmitresult',true,data);
+            },
+            error: function(error){
+                Ext.Viewport.setMasked(false);
+            },
+            dataType: "json"
+        });
     },
-
-    saveRecord: function() {
-        var formPanel = this.down('formpanel'),
-            record = formPanel.getRecord();
-
-        formPanel.updateRecord(record);
-
-        return record;
-    },
+    
 
     onKeyUp: function() {
         console.log('On fucking key up!')

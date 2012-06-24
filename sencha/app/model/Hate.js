@@ -3,6 +3,7 @@ Ext.define('app.model.Hate', {
 	config: {
 	    fields: [
 	    	{ name:'id', type:'int' },
+
 			{ name: 'lat', type: 'string' },
 			{ name: 'long', type: 'string' },
 			{ name: 'weight', type: 'int', defaultValue:0},
@@ -23,16 +24,16 @@ Ext.define('app.model.Hate', {
          	{ type: 'length', field: 'price', max: 64 } 
         ],*/
 
-        /*proxy: {
-            type: 'rest',
+        ,proxy: {
+            type: 'ajax',
             noCache:false,
-            url: CONFIG.basePath + '/api/' + CONFIG.bizUnit + '/hate',
+            url:  "http://10.0.2.51:8008/api/12345/hate",
             reader: {
                 type: 'json',
                 root: 'data',
                 successProperty: 'success',
                 totalProperty  : 'totalCount'
             }
-        }*/	
+        }
 	}
 });

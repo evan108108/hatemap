@@ -16,7 +16,7 @@ Ext.define('app.controller.HateMaster', {
 		},
 		xtype: 'hateMaster'
 	},
-
+	stores:['Hates'],
 	init: function() {
 		var me = this;
 		this.app = this.getApplication();	//	short ref to our app
@@ -33,7 +33,8 @@ Ext.define('app.controller.HateMaster', {
                 pop: 'onMainPop'
             },
             hateForm:{
-            	change:'onHateFormChange'
+            	change:'onHateFormChange',
+            	onsubmitresult:'onHateFormResult'
             },
 			hateList: {
 				itemtap:'showHateDetail'
@@ -42,7 +43,7 @@ Ext.define('app.controller.HateMaster', {
 				tap:'onHateAction'
 			},			
             saveButton: {
-                tap: 'onContactSave'
+                tap: 'onCreateHate'
             },
             mapButton:{
             	tap:'onUpdateView'
@@ -59,7 +60,14 @@ Ext.define('app.controller.HateMaster', {
 		});
 	},
 	launch:function(){
+		var me = this;
+		var device_uid = 131321;
+		//me.getHatesStore().load();
 
+		$.get("http://10.0.2.51:8008/api/" + device_uid +"/hate", function(result){
+            console.log(result.data);
+            me.getHatesStore().setData(result.data);
+       });
 	},
 	onUpdateView:function(item){
 		switch(item.id){
@@ -148,6 +156,7 @@ Ext.define('app.controller.HateMaster', {
     },
 	showHates: function() {
 		console.log('SHOW FUCKING CONTACTS')
+		
 		//this.app.vp.setActiveItem(contacts);
 	},
 	
@@ -182,6 +191,15 @@ Ext.define('app.controller.HateMaster', {
 	 */
 	onHateFormChange: function() {
         this.showSaveButton();
+    },
+    onHateFormResult:function(success, result){
+    	this.getMain.pop();
+    	
+    },
+    onCreateHate:function(){
+    	console.log('do submit')
+    	console.log(this.hateForm)
+    	this.hateForm.doSubmit();
     },
 
 	//BUTTON TOOLBAR HANDLING.

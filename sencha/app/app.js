@@ -48,5 +48,6 @@ Ext.application({
 		// 	type: 'slide',
 		// 	direction: 'left'
 		// });
+		//console.log(Ext.getVersion().major+' '+Ext.getVersion().minor+' '+Ext.getVersion().patch);
 	}
 });
