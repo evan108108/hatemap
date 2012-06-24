@@ -294,8 +294,11 @@ Ext.define('app.controller.HateMaster', {
     onHateFormResult:function(success, result){
     	//alert(2323);
     	var record = result.data;
-    	//var hate = Ext.create
+    	var hate = Ext.create('app.model.Hate',record);
+    	this.getHatesStore().add(hate);
+    	this.getHatesStore().commitChanges();
         this.getMain().pop();
+        this.getMapView().showHateById(record.id);
         
     },
     onCreateHate:function(){
