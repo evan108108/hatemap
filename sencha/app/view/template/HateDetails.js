@@ -6,8 +6,9 @@ Ext.define('app.view.template.HateDetails', {
 	constructor: function (config) {
 		var html = [
 			'<tpl for=".">',
-				'<div class="convo them">',
-					'<p>{desc} {url}</p>',
+				'<div class="hate-detail-holder">',
+					'<div class="hate-list-preivew"><img src="{url}"/></div>',
+					'<p>{desc}</p>',
 				'</div>',
 			'</tpl>'];
 
