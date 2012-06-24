@@ -13,8 +13,9 @@ Ext.define('app.view.Main', {
 
         navigationBar: {
             //ui: 'sencha',
+            cls: 'toolbars',
             items: [
-                {
+               /* {
                     xtype: 'button',
                     id: 'hateButton',
                     text: 'Hate',
@@ -28,7 +29,7 @@ Ext.define('app.view.Main', {
                         type: 'fadeIn',
                         duration: 200
                     }
-                },
+                },*/
                 {
                     xtype: 'button',
                     id: 'saveButton',
@@ -55,6 +56,7 @@ Ext.define('app.view.Main', {
                 id:'navigationToolbar',
                 docked: 'bottom',
                 centered:true,
+                cls: 'toolbars',
                 // Make the toolbar scrollable
                 /*scrollable: {
                     direction: 'horizontal',
@@ -65,13 +67,13 @@ Ext.define('app.view.Main', {
                 items: [
                     { xtype: 'spacer' },
                     { xtype: 'segmentedbutton', items: [
-                        { iconMask: true, id:'mapButton', iconCls: 'maps', data:'hateMap', disabled:true },
-                        { iconMask: true, id:'listButton', iconCls:'list',data:'hateList' }
+                        { iconMask: true, id:'mapButton',ui: 'plain', iconCls: 'maps', data:'hateMap'/*, disabled:true*/ },
+                        { iconMask: true, id:'listButton', ui: 'plain',iconCls:'list',data:'hateList' }
                     ]},
-                    { iconMask: true, id:'hateButton', iconCls: 'icon-haters', data:'hateMap',  },
+                    { iconMask: true, id:'hateButton', text:'BLOWS!', ui: 'plain',/*,iconCls: 'icon-haters',*/ data:'hateMap',  },
                     { xtype: 'segmentedbutton', items: [
-                        { iconMask: true, id:'privateButton', iconCls: 'user',  data:'private' },
-                        { iconMask: true, id:'globalButton',  iconCls: 'team', data:'global' }
+                        { iconMask: true, id:'privateButton',ui: 'plain', iconCls: 'user',  data:'private' },
+                        { iconMask: true, id:'globalButton',  ui: 'plain',iconCls: 'team', data:'global' }
                     ]},
                     { xtype: 'spacer' },
                    /*{ iconMask: true, text: 'Test', iconCls: 'action' },

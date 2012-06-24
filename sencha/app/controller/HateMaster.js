@@ -115,11 +115,11 @@ Ext.define('app.controller.HateMaster', {
     	}
 
         if (this.activeItem.xtype == "hateMap") {
-           this.showHateButton();
-           this.getMapButton().disable();
+           //this.showHateButton();
+           //this.getMapButton().disable();
         } else {
-            this.hideHateButton();
-            this.getMapButton().enable();
+           // this.hideHateButton();
+           // this.getMapButton().enable();
         }
        
     },
@@ -149,11 +149,11 @@ Ext.define('app.controller.HateMaster', {
         if (this.activeItem.xtype == "hateMap") {
         	//This is the only thing that is not DRY.
         	this.getHateList().deselectAll();
-            this.showHateButton();
-             this.getMapButton().disable();
+            //this.showHateButton();
+            // this.getMapButton().disable();
         } else {
-            this.hideHateButton();
-            this.getMapButton().enable();
+            //this.hideHateButton();
+            //this.getMapButton().enable();
         }
 
     },
