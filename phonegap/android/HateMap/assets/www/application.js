@@ -17,11 +17,11 @@ function onDeviceReady() {
 
 Hate.getPhoto = function(source) {
 	source = source || pictureSource.PHOTOLIBRARY;
-    navigator.camera.getPicture(uploadPhoto, photoFailed, { quality: 50, destinationType: destinationType.FILE_URI, sourceType: source });
+    navigator.camera.getPicture(Hate.uploadPhoto, Hate.photoFailed, { quality: 50, destinationType: destinationType.FILE_URI, sourceType: source });
 }
 
 Hate.capturePhoto = function(){
-	navigator.camera.getPicture(uploadPhoto, photoFailed, { quality: 50, destinationType: Camera.DestinationType.FILE_URI }); 
+	navigator.camera.getPicture(Hate.uploadPhoto, Hate.photoFailed, { quality: 50, destinationType: Camera.DestinationType.FILE_URI }); 
 }
 
 Hate.photoFailed = function(message){
@@ -29,7 +29,7 @@ Hate.photoFailed = function(message){
 }
 
 Hate.getGeolocation = function() {
-	navigator.geolocation.getCurrentPosition(geolocationSuccess, geolocationError, { maximumAge: 25000, timeout: 25000, enableHighAccuracy: true });
+	navigator.geolocation.getCurrentPosition(Hate.geolocationSuccess, Hate.geolocationError, { maximumAge: 25000, timeout: 25000, enableHighAccuracy: true });
 }
 
 Hate.geolocationSuccess = function(position) {
@@ -72,8 +72,10 @@ Hate.win = function(r) {
     	Hate.devicePhotoFail();
     }
     else {
+    	alert("Before devicePhotoSuccess");
     	Hate.uploaded_image_url = json_response["data"]["url"];	
     	Hate.devicePhotoSuccess(Hate.uploaded_image_url);
+    	alert("After devicePhotoSuccess");
     	//$("#hate_url").val(uploaded_image_url);
     }
 }
