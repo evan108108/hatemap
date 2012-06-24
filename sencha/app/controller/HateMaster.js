@@ -32,7 +32,7 @@ Ext.define('app.controller.HateMaster', {
 
 	},
 	showHates: function() {
-		var contacts = Ext.create('app.view.HateMap');
+		//var contacts = Ext.create('app.view.HateMap');
 		// this.app.vp.add(contacts);
 		console.log(this.app.vp)
 		console.log('SHOW FUCKING CONTACTS')
