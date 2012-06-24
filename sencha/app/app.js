@@ -24,17 +24,16 @@ Ext.application({
 	mapCenter: [37.788539, -122.401643],
 
 	views: 	[
-		//'Contacts',
 		'HateList',
 		'HateMap',
 		'HateDetails',
-		'window.HateSubmit',
+		'form.HateSubmit',
 		'carousel.Carousel',
 		'carousel.CarouselSlide'
 	],
 	stores: [
-		//'Contacts',
-		'Hates'
+		'Hates',
+		'Tags'
 	],
 	controllers: [/*'Viewport',*/ 'HateMaster'],
 	launch: function() {

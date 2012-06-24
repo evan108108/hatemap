@@ -168,7 +168,7 @@ Ext.define('app.controller.HateMaster', {
 	onHateAction:function(){
 		console.log('on hate action');
 		if (!this.hateForm) {
-            this.hateForm = Ext.create('app.view.window.HateSubmit');
+            this.hateForm = Ext.create('app.view.form.HateSubmit');
         }
 
         // Bind the record onto the edit contact view
