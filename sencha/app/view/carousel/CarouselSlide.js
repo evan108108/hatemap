@@ -7,14 +7,14 @@ Ext.define('app.view.carousel.CarouselSlide', {
         layout: 'vbox',
 		items:[
 			{
-                id: 'content',
+                itemId: 'content',
                 tpl: [
                     '<div class="top">',
-                        '<div class="headshot" style="background-image:url({url});"></div>',
+                        '<div class="headshot" style="background-image:url({src});"></div>',
                         '<div class="name">{description}</div>',
                     '</div>'
                 ].join('')
-            },
+            }/*,
             {
                 xtype: 'map',
                 flex: 1,
@@ -26,20 +26,21 @@ Ext.define('app.view.carousel.CarouselSlide', {
                     mapTypeControl: false,
                     zoom: 13
                 }
-            }
+            }*/ 
 		],
 
         record: null
 	},
 
     updateRecord: function(newRecord) {
+        console.log('UPDATE NEW RECORD, YO!')
         if (newRecord) {
             this.down('#content').setData(newRecord.data);
 
-            this.down('map').setMapCenter({
+            /*this.down('map').setMapCenter({
                 latitude: newRecord.data.lat,
                 longitude: newRecord.data.long
-            });
+            });*/
         }
     }
 });

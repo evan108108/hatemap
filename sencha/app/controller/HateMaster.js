@@ -12,6 +12,7 @@ Ext.define('app.controller.HateMaster', {
 			listButton: '#listButton',
 			privateButton: '#privateButton',
 			globalButton: '#globalButton',
+			navigationToolbar:'#navigationToolbar'
 		},
 		xtype: 'hateMaster'
 	},
@@ -91,9 +92,14 @@ Ext.define('app.controller.HateMaster', {
     		case 'hateMap':
     		case 'hateList':
     			this.enableFilters();
-    		break
+    			this.getNavigationToolbar().show();
+    		break;
+    		case 'hateCarousel':
+    			this.getNavigationToolbar().hide();
+    		break;
     		default:
     			this.disableFilters();
+    			this.getNavigationToolbar().show();
     		break
     	}
 
@@ -118,9 +124,14 @@ Ext.define('app.controller.HateMaster', {
     		case 'hateMap':
     		case 'hateList':
     			this.enableFilters();
+    			this.getNavigationToolbar().show();
+    		break;
+    		case 'hateCarousel':
+    			this.getNavigationToolbar().hide();
     		break;
     		default:
     			this.disableFilters();
+    			this.getNavigationToolbar().show();
     		break;
     	}
 
@@ -144,7 +155,7 @@ Ext.define('app.controller.HateMaster', {
         
         if (!this.showHate) {
             //this.showHate = Ext.create('app.view.HateDetails');
-            this.showHate = Ext.create('app.view.carousel.CarouselSlide');
+            this.showHate = Ext.create('app.view.carousel.Carousel');
         }
 
         // Bind the record onto the show contact view

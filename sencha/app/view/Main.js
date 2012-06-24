@@ -52,6 +52,7 @@ Ext.define('app.view.Main', {
             { xtype: 'hateMap' },
             {
                 xtype: 'toolbar',
+                id:'navigationToolbar',
                 docked: 'bottom',
 
                 // Make the toolbar scrollable
