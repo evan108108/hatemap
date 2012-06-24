@@ -5,7 +5,6 @@ function init() {
 }
 
 function onDeviceReady() {
-	alert("onDeviceReady called");
     pictureSource=navigator.camera.PictureSourceType;
     destinationType=navigator.camera.DestinationType;
     Hate.device_uid = device_uid = device.uuid;
@@ -72,10 +71,9 @@ Hate.win = function(r) {
     	Hate.devicePhotoFail();
     }
     else {
-    	alert("Before devicePhotoSuccess");
     	Hate.uploaded_image_url = json_response["data"]["url"];	
-    	Hate.devicePhotoSuccess(Hate.uploaded_image_url);
-    	alert("After devicePhotoSuccess");
+//    	Hate.devicePhotoSuccess(Hate.uploaded_image_url);
+    	app.app.getController('HateMaster').onDevicePhotoSuccess(Hate.uploaded_image_url);
     	//$("#hate_url").val(uploaded_image_url);
     }
 }
