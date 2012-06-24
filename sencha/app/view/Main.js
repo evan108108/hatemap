@@ -54,15 +54,16 @@ Ext.define('app.view.Main', {
                 xtype: 'toolbar',
                 id:'navigationToolbar',
                 docked: 'bottom',
-
+                centered:true,
                 // Make the toolbar scrollable
-                scrollable: {
+                /*scrollable: {
                     direction: 'horizontal',
                     indicators: false
-                },
+                },*/
 
                 // Add several items into the toolbar
                 items: [
+                    { xtype: 'spacer' },
                     { xtype: 'segmentedbutton', items: [
                         { iconMask: true, id:'mapButton', iconCls: 'icon-map', data:'hateMap', disabled:true },
                         { iconMask: true, id:'listButton', iconCls:'icon-list',data:'hateList' }
@@ -71,7 +72,8 @@ Ext.define('app.view.Main', {
                     { xtype: 'segmentedbutton', items: [
                         { iconMask: true, id:'privateButton', iconCls: 'icon-user',  data:'private' },
                         { iconMask: true, id:'globalButton',  iconCls: 'icon-users', data:'global' }
-                    ]}
+                    ]},
+                    { xtype: 'spacer' },
                    /*{ iconMask: true, text: 'Test', iconCls: 'action' },
                     { iconMask: true, text: 'Test', ui: 'plain', iconCls: 'bookmarks' },
                     { iconMask: true, ui: 'round', iconCls: 'download' },
