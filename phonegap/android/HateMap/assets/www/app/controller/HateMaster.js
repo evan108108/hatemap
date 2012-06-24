@@ -61,10 +61,10 @@ Ext.define('app.controller.HateMaster', {
 	},
 	launch:function(){
 		var me = this;
-		var device_uid = 131321;
+		
 		//me.getHatesStore().load();
 
-		$.get("http://10.0.2.51:8008/api/" + device_uid +"/hate", function(result){
+		$.get("http://10.0.2.51:8008/api/" + Hate.device_uid +"/hate", function(result){
             console.log(result.data);
             me.getHatesStore().setData(result.data);
        });

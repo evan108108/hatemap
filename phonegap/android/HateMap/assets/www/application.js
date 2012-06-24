@@ -1,3 +1,4 @@
+if(typeof Hate == 'undefined') Hate = {};
 
 function init() {
     document.addEventListener("deviceready", onDeviceReady, true);
@@ -7,30 +8,30 @@ function onDeviceReady() {
 	alert("onDeviceReady called");
     pictureSource=navigator.camera.PictureSourceType;
     destinationType=navigator.camera.DestinationType;
-    device_uid = device.uuid;
+    Hate.device_uid = device_uid = device.uuid;
     getGeolocation();
     
     //
     app.mainLaunch();
 }
 
-function getPhoto(source) {
+Hate.getPhoto = function(source) {
     navigator.camera.getPicture(uploadPhoto, photoFailed, { quality: 50, destinationType: destinationType.FILE_URI, sourceType: source });
 }
 
-function capturePhoto(){
+Hate.capturePhoto = function(){
 	navigator.camera.getPicture(uploadPhoto, photoFailed, { quality: 50, destinationType: Camera.DestinationType.FILE_URI }); 
 }
 
-function photoFailed(message){
+Hate.photoFailed = function(message){
 	alert("photoFailed: " + message);
 }
 
-function getGeolocation() {
+Hate.getGeolocation = function() {
 	navigator.geolocation.getCurrentPosition(geolocationSuccess, geolocationError, { maximumAge: 25000, timeout: 25000, enableHighAccuracy: true });
 }
 
-function geolocationSuccess(position) {
+Hate.geolocationSuccess = function(position) {
 	alert("geolocationSuccess called");
 	current_lat = position.coords.latitude;
 	current_long = position.coords.longitude;
@@ -40,11 +41,11 @@ function geolocationSuccess(position) {
 //	$("#hate_long").val(current_long);
 }
 
-function geolocationError(error) {
+Hate.geolocationError = function(error) {
 	alert('We could not find your GPS location. Make sure to turn on GPS.');
 }
 
-function uploadPhoto(imageURI) {
+Hate.uploadPhoto = function(imageURI) {
 	$('#photo_thumbnail').attr("src", imageURI).show();
 	
     var options = new FileUploadOptions();
@@ -56,10 +57,10 @@ function uploadPhoto(imageURI) {
     options.params = params;
 
     var ft = new FileTransfer();
-    ft.upload(imageURI, "http://10.0.2.51:8008/api/" + device_uid +"/hate/image", win, fail, options);
+    ft.upload(imageURI, "http://10.0.2.51:8008/api/" + device_uid +"/hate/image", Hate.win, Hate.fail, options);
 }
 
-function win(r) {
+Hate.win = function(r) {
 //	alert(JSON.stringify(r));
 //    alert("Code = " + r.responseCode);
 //    alert("Response = " + r.response);
@@ -70,28 +71,28 @@ function win(r) {
     	alert(json_response["message"]);
     }
     else {
-    	uploaded_image_url = json_response["data"]["url"];	
-    	$("#hate_url").val(uploaded_image_url);
+    	Hate.uploaded_image_url = json_response["data"]["url"];	
+    	//$("#hate_url").val(uploaded_image_url);
     }
 }
 
-function fail(error) {
+Hate.fail = function(error) {
     alert("An error has occurred: Code = " = error.code);
 }
 
-function getMyHates() {	
+Hate.getMyHates = function() {	
 	$.get("http://10.0.2.51:8008/api/" + device_uid +"/hate/me", function(data){
 		alert("successful get my hates: " + JSON.stringify(data));
 	});
 }
 
-function getAllHates() {
+Hate.getAllHates = function() {
 	$.get("http://10.0.2.51:8008/api/" + device_uid +"/hate", function(data){
 		alert("successful get all hates: " + JSON.stringify(data));
 	});
 }
 
-function postMyHate() {
+Hate.postMyHate = function() {
 	alert($("#new_hate_form").serialize());
 //	$.post("http://10.0.2.51:8008/api/" + device_uid +"/hate", $("#new_hate_form").serialize(), function(data) {
 //		alert("successful post returned: " + JSON.stringify(data));
