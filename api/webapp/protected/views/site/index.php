@@ -6,13 +6,15 @@
     <script>
       $(document).ready(function(){
         $('#map_canvas').hide().fadeIn(10000);
+         $('#sitelogo').hide().fadeIn(10000);
       });
       
     </script>
   </head>
   <body style="width:100%;background:black;margin: 0;padding:0; background-image:url(/images/SplashScreenHateMap900.jpg);background-size: 500 px;">
     <center>
-    	<div id="map_canvas" style="width:100%; height:100%"></div>
+      <div id="map_canvas" style="width:100%; height:100%"></div>
+      <div id="sitelogo" style="position:absolute; top:10px; right:10px"><img src="/images/map/HateMapLogo.png" /></div>
 
 	<script>
 	var map = null;
