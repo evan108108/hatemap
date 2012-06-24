@@ -33,7 +33,7 @@ Ext.define('app.view.Main', {
                     xtype: 'button',
                     id: 'saveButton',
                     text: 'Save',
-                    ui: 'sencha',
+                    ui: 'confirm',
                     align: 'right',
                     hidden: true,
                     hideAnimation: Ext.os.is.Android ? false : {

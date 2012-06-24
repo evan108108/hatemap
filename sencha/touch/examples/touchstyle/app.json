@@ -2,6 +2,9 @@
     "name": "TouchStyle",
     "js": [
         {
+            "path": "cordova-1.7.0.js"
+        },
+        {
             "path": "../../sencha-touch-debug.js"
         },
         {
