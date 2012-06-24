@@ -43,18 +43,26 @@ class HateController extends ERestController
 			),
 		);
 	}
-  
-  public function doCustomRestPostImage($var)
+  protected function getFileExt($type)
   {
-    $model=new Hate;
-    if(isset($_POST['image']))
-    {
-      $model->image = $_POST['image'];
-      $model->image=CUploadedFile::getInstance($model,'image');
-      $filename = $this->uid . "_" . md5(time().rand()) . $uploaded_image->getExtensionName();
-      $model->image->saveAs(str_replace('/protected', '', Yii::app()->getBasePath()) . '/images/hates/' . $filename);
-      
+    $ext = explode('/', $type);
+    return $ext[(count($ext)-1)];
+  }
+
+  public function doCustomRestPostImage($var=null)
+  {
+    //Directory where uploaded images are saved
+    $dirname = str_replace('/protected', '', Yii::app()->getBasePath()) . '/images/hates'; 
+    // If uploading file
+    if ($_FILES) {    
+      $filename = $this->uid . "_" . md5(time().rand()) . '.' . $this->getFileExt($_FILES["file"]["type"]);
+      //print_r($_FILES);    
+      @mkdir ($dirname, 0777, true);
+      move_uploaded_file($_FILES["file"]["tmp_name"], $dirname."/".$filename);
+      $this->renderJson(array('success'=>true, 'message'=>'Image Uploaded', 'data'=>array('url'=>Yii::app()->getBaseUrl(true) . "/images/hates/" . $filename)));
     } 
+    else
+     throw new CHttpException(200, 'Error: Could not upload image'); 
   }
 
 	/**
