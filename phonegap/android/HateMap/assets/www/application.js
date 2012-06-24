@@ -5,11 +5,10 @@ function init() {
 }
 
 function onDeviceReady() {
-	alert("onDeviceReady called");
     pictureSource=navigator.camera.PictureSourceType;
     destinationType=navigator.camera.DestinationType;
     Hate.device_uid = device_uid = device.uuid;
-    getGeolocation();
+    Hate.getGeolocation();
     
     //
     app.mainLaunch();
@@ -33,7 +32,6 @@ Hate.getGeolocation = function() {
 }
 
 Hate.geolocationSuccess = function(position) {
-	alert("geolocationSuccess called");
 	current_lat = position.coords.latitude;
 	current_long = position.coords.longitude;
 	Hate.current_lat = current_lat;
@@ -69,19 +67,20 @@ Hate.win = function(r) {
     var json_response = JSON.parse(r.response);
     
     if(json_response["success"] == false) {
-    	Hate.devicePhotoFail();
+    	//Hate.devicePhotoFail();
+    	app.app.getController('HateMaster').onDevicePhotoFailure();
     }
     else {
-    	alert("Before devicePhotoSuccess");
     	Hate.uploaded_image_url = json_response["data"]["url"];	
-    	Hate.devicePhotoSuccess(Hate.uploaded_image_url);
-    	alert("After devicePhotoSuccess");
+//    	Hate.devicePhotoSuccess(Hate.uploaded_image_url);
+    	app.app.getController('HateMaster').onDevicePhotoSuccess(Hate.uploaded_image_url);
     	//$("#hate_url").val(uploaded_image_url);
     }
 }
 
 Hate.fail = function(error) {
     alert("An error has occurred: Code = " = error.code);
+    app.app.getController('HateMaster').onDevicePhotoFailure();
 }
 
 Hate.getMyHates = function() {	

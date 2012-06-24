@@ -108,6 +108,7 @@ Ext.define('app.view.HateMap', {
 		            console.log('lat: '+ geo.getLatitude() + ' long: '+geo.getLongitude());
 		            position = new google.maps.LatLng(geo.getLatitude(), geo.getLongitude());
 		            me.addUserMarker(position, "assets/images/blue_dot_circle.png");
+
 		        },
 		        locationerror: function(geo, bTimeout, bPermissionDenied, bLocationUnavailable, message) {
 		            if(bTimeout){
@@ -131,8 +132,10 @@ Ext.define('app.view.HateMap', {
         }, 5000);
 
         setInterval(function() {
+
         	//me.refreshHates();
         }, 20000);
+
 	},
 	addUserMarker: function(location, icon) {
 		console.log('add marker');
@@ -189,6 +192,7 @@ Ext.define('app.view.HateMap', {
         google.maps.event.addListener(marker, 'click', function(obj) {
         	// show the info box with thumbnail
         	me.infoWindow.setContent('<div style="overflow:hidden; padding-bottom:20px"><div style="width:320px"><b>'+strDesc+'</b></div><br/><img style="width:'+window.innerWidth/3+'px" src="'+strUrl+'" /></div>');
+
         	me.infoWindow.open(marker.getMap(), marker);
 
         	google.maps.event.addListener(me.infoWindow, 'closeclick', function() {
@@ -234,9 +238,11 @@ Ext.define('app.view.HateMap', {
     	console.log('refreshHates');
     	var me = this;
     	var arr = [];
+
     	me.deleteOverlays();
     	me.iterateMe(0, 3);
     },
+
 
     showHateById: function(id) {
     	console.log('refreshHates');

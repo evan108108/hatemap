@@ -14,7 +14,7 @@ Ext.define('app.view.Main', {
         navigationBar: {
             //ui: 'sencha',
             items: [
-                {
+                /*{
                     xtype: 'button',
                     id: 'hateButton',
                     text: 'Hate',
@@ -28,7 +28,7 @@ Ext.define('app.view.Main', {
                         type: 'fadeIn',
                         duration: 200
                     }
-                },
+                },*/
                 {
                     xtype: 'button',
                     id: 'saveButton',
@@ -54,17 +54,26 @@ Ext.define('app.view.Main', {
                 xtype: 'toolbar',
                 id:'navigationToolbar',
                 docked: 'bottom',
-
+                centered:true,
                 // Make the toolbar scrollable
-                scrollable: {
+                /*scrollable: {
                     direction: 'horizontal',
                     indicators: false
-                },
+                },*/
 
                 // Add several items into the toolbar
                 items: [
-                    { iconMask: true, id:'mapButton', iconCls: 'action', data:'hateMap', disabled:true },
-                    { iconMask: true, id:'listButton', /*ui: 'plain',*/ iconCls: 'add',data:'hateList' },
+                    { xtype: 'spacer' },
+                    { xtype: 'segmentedbutton', items: [
+                        { iconMask: true, id:'mapButton', iconCls: 'icon-map', data:'hateMap', disabled:true },
+                        { iconMask: true, id:'listButton', iconCls:'icon-list',data:'hateList' }
+                    ]},
+                    { iconMask: true, id:'hateButton', iconCls: 'icon-haters', data:'hateMap' },
+                    { xtype: 'segmentedbutton', items: [
+                        { iconMask: true, id:'privateButton', iconCls: 'icon-user',  data:'private' },
+                        { iconMask: true, id:'globalButton',  iconCls: 'icon-users', data:'global' }
+                    ]},
+                    { xtype: 'spacer' },
                    /*{ iconMask: true, text: 'Test', iconCls: 'action' },
                     { iconMask: true, text: 'Test', ui: 'plain', iconCls: 'bookmarks' },
                     { iconMask: true, ui: 'round', iconCls: 'download' },
@@ -74,12 +83,11 @@ Ext.define('app.view.Main', {
                     { iconMask: true, iconAlign: 'right', ui: 'round', text: 'Home', iconCls: 'home' },
                     { iconMask: true, ui: 'action-round', iconCls: 'locate' },
                     { xtype: 'segmentedbutton', items: [
-                    	{ iconMask: true, iconCls: 'maps' },
-                    	{ iconMask: true, iconCls: 'organize', text: 'Sort' },
-                    	{ iconMask: true, iconCls: 'refresh' }
+                        { iconMask: true, iconCls: 'maps' },
+                        { iconMask: true, iconCls: 'organize', text: 'Sort' },
+                        { iconMask: true, iconCls: 'refresh' }
                     ]},*/
-                    { iconMask: true, id:'privateButton', ui: 'back', iconCls: 'reply', data:'private' },
-                    { iconMask: true, id:'globalButton', iconCls: 'x-icon-mask trash', data:'global' }
+                    
                 ]
             }
         ]

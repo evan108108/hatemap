@@ -16,6 +16,7 @@ Ext.define('app.controller.HateMaster', {
 
             formLat:'#formLat',
             formLong:'#formLong',
+            formImagePreview:'#formImage',
             formImgUrl:'#formImgUrl'
         },
         xtype: 'hateMaster'
@@ -73,7 +74,7 @@ Ext.define('app.controller.HateMaster', {
 
         //me.getHatesStore().load();
 
-        $.get("http://10.0.2.51:8008/api/" + Hate.device_uid +"/hate", function(result){
+        $.get("http://10.0.2.51:8008/api/" + Hate.device_uid +"/hate/limit/25/0", function(result){
             console.log(result.data);
             me.getHatesStore().setData(result.data);
        });
@@ -100,7 +101,7 @@ Ext.define('app.controller.HateMaster', {
     },
     onMainPush: function(view, item) {
         console.log('onMainPush')
-        var hateButton = this.getHateButton();
+        //var hateButton = this.getHateButton();
 
         this.activeItem = this.getMain().getActiveItem();
 
@@ -121,11 +122,11 @@ Ext.define('app.controller.HateMaster', {
         }
 
         if (this.activeItem.xtype == "hateMap") {
-           this.showHateButton();
+           //this.showHateButton();
            this.getMapButton().disable();
         } else {
-            this.hideHateButton();
-            this.getMapButton().enable();
+            //this.hideHateButton();
+            //this.getMapButton().enable();
         }
        
     },
@@ -155,11 +156,11 @@ Ext.define('app.controller.HateMaster', {
         if (this.activeItem.xtype == "hateMap") {
             //This is the only thing that is not DRY.
             this.getHateList().deselectAll();
-            this.showHateButton();
-             this.getMapButton().disable();
+            //this.showHateButton();
+            // this.getMapButton().disable();
         } else {
-            this.hideHateButton();
-            this.getMapButton().enable();
+           // this.hideHateButton();
+           // this.getMapButton().enable();
         }
 
     },
@@ -177,7 +178,9 @@ Ext.define('app.controller.HateMaster', {
         }
 
         // Bind the record onto the show contact view
-        //this.showHate.setRecord(record);
+        var records = this.getHatesStore().getSlides();
+
+        this.showHate.setItems(records);
 
         // Push the show contact view into the navigation view
         this.getMain().push(this.showHate);
@@ -219,7 +222,7 @@ Ext.define('app.controller.HateMaster', {
                 {
                     docked: 'top',
                     xtype: 'toolbar',
-                    title: 'Overlay Title'
+                    title: 'What do you hate?'
                 },
                 {
                     xtype:'container',
@@ -277,6 +280,7 @@ Ext.define('app.controller.HateMaster', {
         this.getFormLat().setValue(Hate.current_lat);
         this.getFormLong().setValue(Hate.current_long);
         this.getFormImgUrl().setValue(url);
+        this.getFormImagePreview().setSrc(url);
 
         $("#image-url").val(url);
         this.getMain().push(this.hateForm);
@@ -288,7 +292,13 @@ Ext.define('app.controller.HateMaster', {
         this.showSaveButton();
     },
     onHateFormResult:function(success, result){
-        this.getMain.pop();
+    	//alert(2323);
+    	var record = result.data;
+    	var hate = Ext.create('app.model.Hate',record);
+    	this.getHatesStore().add(hate);
+    	this.getHatesStore().commitChanges();
+        this.getMain().pop();
+        this.getMapView().showHateById(record.id);
         
     },
     onCreateHate:function(){
