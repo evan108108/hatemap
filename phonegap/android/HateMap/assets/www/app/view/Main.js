@@ -14,7 +14,7 @@ Ext.define('app.view.Main', {
         navigationBar: {
             //ui: 'sencha',
             items: [
-                {
+                /*{
                     xtype: 'button',
                     id: 'hateButton',
                     text: 'Hate',
@@ -28,7 +28,7 @@ Ext.define('app.view.Main', {
                         type: 'fadeIn',
                         duration: 200
                     }
-                },
+                },*/
                 {
                     xtype: 'button',
                     id: 'saveButton',
@@ -65,13 +65,13 @@ Ext.define('app.view.Main', {
                 items: [
                     { xtype: 'spacer' },
                     { xtype: 'segmentedbutton', items: [
-                        { iconMask: true, id:'mapButton', iconCls: 'maps', data:'hateMap', disabled:true },
-                        { iconMask: true, id:'listButton', iconCls:'list',data:'hateList' }
+                        { iconMask: true, id:'mapButton', iconCls: 'icon-map', data:'hateMap', disabled:true },
+                        { iconMask: true, id:'listButton', iconCls:'icon-list',data:'hateList' }
                     ]},
-                    { iconMask: true, id:'hateButton', iconCls: 'icon-haters', data:'hateMap',  },
+                    { iconMask: true, id:'mapButton', iconCls: 'icon-haters', data:'hateMap', disabled:true },
                     { xtype: 'segmentedbutton', items: [
-                        { iconMask: true, id:'privateButton', iconCls: 'user',  data:'private' },
-                        { iconMask: true, id:'globalButton',  iconCls: 'team', data:'global' }
+                        { iconMask: true, id:'privateButton', iconCls: 'icon-user',  data:'private' },
+                        { iconMask: true, id:'globalButton',  iconCls: 'icon-users', data:'global' }
                     ]},
                     { xtype: 'spacer' },
                    /*{ iconMask: true, text: 'Test', iconCls: 'action' },
@@ -83,9 +83,9 @@ Ext.define('app.view.Main', {
                     { iconMask: true, iconAlign: 'right', ui: 'round', text: 'Home', iconCls: 'home' },
                     { iconMask: true, ui: 'action-round', iconCls: 'locate' },
                     { xtype: 'segmentedbutton', items: [
-                    	{ iconMask: true, iconCls: 'maps' },
-                    	{ iconMask: true, iconCls: 'organize', text: 'Sort' },
-                    	{ iconMask: true, iconCls: 'refresh' }
+                        { iconMask: true, iconCls: 'maps' },
+                        { iconMask: true, iconCls: 'organize', text: 'Sort' },
+                        { iconMask: true, iconCls: 'refresh' }
                     ]},*/
                     
                 ]
