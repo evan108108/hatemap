@@ -79,6 +79,7 @@ Ext.define('app.controller.HateMaster', {
 
             me.getHatesStore().setData(result.data);
            // call refreshHates on mapView // TODO::
+           	mapView.refreshHates();
        });
 	},
 	onUpdateView:function(item){
