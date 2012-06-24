@@ -16,6 +16,7 @@ Ext.define('app.controller.HateMaster', {
 
             formLat:'#formLat',
             formLong:'#formLong',
+            formImagePreview:'#formImage',
             formImgUrl:'#formImgUrl'
         },
         xtype: 'hateMaster'
@@ -73,7 +74,7 @@ Ext.define('app.controller.HateMaster', {
 
         //me.getHatesStore().load();
 
-        $.get("http://10.0.2.51:8008/api/" + Hate.device_uid +"/hate", function(result){
+        $.get("http://10.0.2.51:8008/api/" + Hate.device_uid +"/hate/limit/25/0", function(result){
             console.log(result.data);
             me.getHatesStore().setData(result.data);
        });
@@ -177,7 +178,9 @@ Ext.define('app.controller.HateMaster', {
         }
 
         // Bind the record onto the show contact view
-        //this.showHate.setRecord(record);
+        var records = this.getHatesStore().getSlides();
+
+        this.showHate.setItems(records);
 
         // Push the show contact view into the navigation view
         this.getMain().push(this.showHate);
@@ -277,6 +280,7 @@ Ext.define('app.controller.HateMaster', {
         this.getFormLat().setValue(Hate.current_lat);
         this.getFormLong().setValue(Hate.current_long);
         this.getFormImgUrl().setValue(url);
+        this.getFormImagePreview().setSrc(url);
 
         $("#image-url").val(url);
         this.getMain().push(this.hateForm);
